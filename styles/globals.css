@@ -8,3 +8,25 @@ body {
     box-sizing: border-box;
     /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
 }
+
+@layer utilities {
+    .rdw-option-wrapper {
+        border: 1px solid #f1f1f1;
+        padding: 5px;
+        min-width: 25px;
+        height: 20px;
+        border-radius: 2px;
+        margin: 0 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background: rgb(255, 255, 255);
+        /* background of buttons */
+        text-transform: capitalize;
+        /* @apply bg-gray-800; */
+    }
+    .in-the-line {
+        @apply bg-gray-600;
+    }
+}

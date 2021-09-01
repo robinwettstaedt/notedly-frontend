@@ -1,8 +1,13 @@
 import React from 'react';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import './index.css';
-import '../../../styles/TextEditorStyles.css';
+import { EditorProps } from 'react-draft-wysiwyg';
+import CustomInline from './CustomInline';
+
+import dynamic from 'next/dynamic';
+const Editor = dynamic<EditorProps>(
+  () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
+  { ssr: false }
+);
 
 const TextEditor = () => {
   const [editorState, setEditorState] = React.useState(
@@ -54,6 +59,46 @@ const TextEditor = () => {
         // blockStyleFn={() => 'super'}
         editorState={editorState}
         onEditorStateChange={setEditorState}
+        wrapperClassName="tbd"
+        editorClassName="tbd"
+        toolbar={{
+          options: [
+            'inline',
+            // 'blockType',
+            'fontSize',
+            // 'fontFamily',
+            'list',
+            'textAlign',
+            'colorPicker',
+            'link',
+            'embedded',
+            'image',
+            // 'remove',
+            // 'emoji',
+            'history',
+          ],
+          colorPicker: { inDropdown: true },
+          inline: {
+            inDropdown: false,
+            className: 'in-the-line',
+            component: CustomInline,
+            dropdownClassName: undefined,
+            options: [
+              'bold',
+              'italic',
+              'underline',
+              'strikethrough',
+              'monospace',
+              'superscript',
+              'subscript',
+            ],
+          },
+          list: { inDropdown: true },
+          textAlign: { inDropdown: true },
+          link: { inDropdown: true },
+          history: { inDropdown: true },
+        }}
+        // toolbarHidden
       />
       <button
         className="px-4 py-2 m-2 bg-gray-500 text-gray-50 border rounded"

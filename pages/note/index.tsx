@@ -1,9 +1,10 @@
 import React from 'react';
+import TextEditor from './edit/TextEditor';
 
 const index = () => {
   return (
     <div>
-      <h1>HI!!</h1>
+      <TextEditor />
     </div>
   );
 };
