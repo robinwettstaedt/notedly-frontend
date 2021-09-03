@@ -98,7 +98,7 @@ const TextEditor = () => {
           link: { inDropdown: true },
           history: { inDropdown: true },
         }}
-        // toolbarHidden
+        //  toolbarHidden
       />
       <button
         className="px-4 py-2 m-2 bg-gray-500 text-gray-50 border rounded"
