@@ -1,5 +1,5 @@
 import '../styles/globals.css';
-import '../styles/TextEditorStyles.css';
+// import '../styles/toolbar-styles.css';
 import type { AppProps } from 'next/app';
 
 function MyApp({ Component, pageProps }: AppProps) {

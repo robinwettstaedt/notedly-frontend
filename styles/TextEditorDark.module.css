@@ -1,4 +1,4 @@
-/* .rdw-option-wrapper {
+.rdw-option-wrapper {
     border: 1px solid #f1f1f1;
     padding: 5px;
     min-width: 25px;
@@ -9,12 +9,9 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background: rgb(255, 255, 255);
-
+    background: white;
     text-transform: capitalize;
-} 
-
-*/
+}
 
 .rdw-option-wrapper:hover {
     box-shadow: 1px 1px 0px #bfbdbd;
@@ -36,12 +33,12 @@
 .rdw-dropdown-wrapper {
     height: 30px;
     background: white;
-    /* background of buttons that have a dropdown  */
     cursor: pointer;
     border: 1px solid #f1f1f1;
     border-radius: 2px;
     margin: 0 3px;
     text-transform: capitalize;
+    background: white;
 }
 
 .rdw-dropdown-wrapper:focus {

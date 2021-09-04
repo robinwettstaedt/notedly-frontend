@@ -1,7 +1,24 @@
 import React from 'react';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
-import CustomInline from './CustomInline';
+import toolbarDefaultsDark from '../../../utils/DraftEditorUtils/toolbarDefaultsDark';
+import '../../../styles/TextEditorDark.module.css';
+
+const styles: { [key: string]: React.CSSProperties } = {
+  toolbarStyles: {
+    // background: 'yellow',
+    // height: 50,
+    background: '#363636',
+    display: 'flex',
+    justifyContent: 'space-between',
+    // flexWrap: 'nowrap',
+    // overflowX: 'scroll',
+    overflowY: 'scroll',
+    // whiteSpace: 'nowrap',
+    position: 'absolute',
+    bottom: 200,
+  },
+};
 
 import dynamic from 'next/dynamic';
 const Editor = dynamic<EditorProps>(
@@ -9,7 +26,7 @@ const Editor = dynamic<EditorProps>(
   { ssr: false }
 );
 
-const TextEditor = () => {
+const TextEditorDark = () => {
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   );
@@ -59,46 +76,13 @@ const TextEditor = () => {
         // blockStyleFn={() => 'super'}
         editorState={editorState}
         onEditorStateChange={setEditorState}
-        wrapperClassName="tbd"
-        editorClassName="tbd"
-        toolbar={{
-          options: [
-            'inline',
-            // 'blockType',
-            'fontSize',
-            // 'fontFamily',
-            'list',
-            'textAlign',
-            'colorPicker',
-            'link',
-            'embedded',
-            'image',
-            // 'remove',
-            // 'emoji',
-            'history',
-          ],
-          colorPicker: { inDropdown: true },
-          inline: {
-            inDropdown: false,
-            className: 'in-the-line',
-            component: CustomInline,
-            dropdownClassName: undefined,
-            options: [
-              'bold',
-              'italic',
-              'underline',
-              'strikethrough',
-              'monospace',
-              'superscript',
-              'subscript',
-            ],
-          },
-          list: { inDropdown: true },
-          textAlign: { inDropdown: true },
-          link: { inDropdown: true },
-          history: { inDropdown: true },
-        }}
-        //  toolbarHidden
+        // toolbarStyle={styles.toolbarStyles}
+        // wrapperClassName="wrapper-styles"
+        // editorClassName="editor-styles"
+        // toolbarStyle=ToolbarStyleObject,
+        // toolbarClassName="ownToolbar"
+        // toolbarOnFocus
+        toolbar={toolbarDefaultsDark}
       />
       <button
         className="px-4 py-2 m-2 bg-gray-500 text-gray-50 border rounded"
@@ -116,4 +100,4 @@ const TextEditor = () => {
   );
 };
 
-export default TextEditor;
+export default TextEditorDark;

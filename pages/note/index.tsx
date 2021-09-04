@@ -1,10 +1,10 @@
 import React from 'react';
-import TextEditor from './edit/TextEditor';
+import TextEditorDark from './edit/TextEditorDark';
 
 const index = () => {
   return (
     <div>
-      <TextEditor />
+      <TextEditorDark />
     </div>
   );
 };

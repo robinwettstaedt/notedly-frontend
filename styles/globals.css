@@ -10,23 +10,17 @@ body {
 }
 
 @layer utilities {
-    .rdw-option-wrapper {
-        border: 1px solid #f1f1f1;
-        padding: 5px;
-        min-width: 25px;
-        height: 20px;
-        border-radius: 2px;
-        margin: 0 4px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        background: rgb(255, 255, 255);
-        /* background of buttons */
-        text-transform: capitalize;
-        /* @apply bg-gray-800; */
+    /* .toolbar-styles {
+        @apply hidden;
+    } */
+    /* .editor-styles {
+        @apply bg-blue-500;
     }
-    .in-the-line {
-        @apply bg-gray-600;
+    .wrapper-styles {
+        @apply bg-gray-500;
+    } */
+    img {
+        height: 15px;
+        width: 15px;
     }
 }
