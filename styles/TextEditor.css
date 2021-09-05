@@ -44,7 +44,8 @@
 }
 
 .rdw-dropdown-wrapper {
-    height: 30px;
+    height: 40px;
+    /* width: 50px; */
     background: white;
     cursor: pointer;
     border: 1px solid #f1f1f1;
@@ -52,6 +53,7 @@
     margin: 0 3px;
     text-transform: capitalize;
     background: white;
+    border-radius: 6px;
 }
 
 .rdw-dropdown-wrapper:focus {
@@ -76,6 +78,7 @@
     border-top: 6px solid black;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
+    /* margin-left: 5px; */
 }
 
 .rdw-dropdown-carettoclose {
@@ -993,14 +996,17 @@
     box-sizing: border-box;
 }
 
+
+/* toolbar container */
+
 .rdw-editor-toolbar {
-    padding: 6px 5px 0;
+    padding: 8px;
     /* border-radius: 2px; */
     /* border: 1px solid #f1f1f1; */
     display: flex;
     justify-content: flex-start;
     background: white;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     font-size: 15px;
     margin-bottom: 5px;
     user-select: none;
@@ -1273,6 +1279,7 @@
         border-top: 6px solid white;
     }
     .rdw-dropdown-optionwrapper {
+        color: white;
         border: 1px solid var(--grey-800);
         background: var(--grey-600);
         -ms-overflow-style: none;
@@ -1288,14 +1295,17 @@
     }
     .rdw-dropdown-optionwrapper:hover {
         box-shadow: none;
-        background-color: var(--grey-800);
+        background-color: var(--grey-600);
     }
     .rdw-option-wrapper {
         border: none;
-        background: var(--grey-800);
+        height: 100%;
+        width: 100%;
+        background: var(--grey-600);
     }
     .rdw-option-wrapper:hover {
-        box-shadow: 1px 1px 0px #bfbdbd;
+        box-shadow: none;
+        background-color: var(--grey-400);
     }
     .rdw-option-wrapper:active {
         box-shadow: 1px 1px 0px #bfbdbd inset;
@@ -1313,16 +1323,16 @@
     }
     .rdw-dropdown-wrapper:hover {
         box-shadow: none;
-        background-color: var(--grey-600);
+        background-color: var(--grey-400);
     }
     .rdw-dropdown-wrapper:active {
-        box-shadow: 1px 1px 0px #bfbdbd inset;
+        box-shadow: 1px 1px 0px var(--grey-400) inset;
     }
     .rdw-dropdownoption-highlighted {
-        background: #f1f1f1;
+        background: var(--grey-400);
     }
     .rdw-dropdownoption-active {
-        background: #f5f5f5;
+        background: var(--grey-400);
     }
     .rdw-colorpicker-modal {
         position: absolute;
