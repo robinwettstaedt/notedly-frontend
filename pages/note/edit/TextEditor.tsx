@@ -2,42 +2,27 @@ import React from 'react';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
 import toolbarDefaultsDark from '../../../utils/DraftEditorUtils/toolbarDefaultsDark';
-// import '../../../styles/TextEditorLight.module.css';
+import toolbarDefaultsLight from '../../../utils/DraftEditorUtils/toolbarDefaultsLight';
 
 // have 1 TextEditor, with 1 CSS file that has preferred theme query in which the default classes' colors are updated
 // toolbar= themeContext === 'dark' ? {toolbarDefaultsDark} : {toolbarDefaultsLight} in which the right SVG are given
 // if necessary make use of the "wrapperClassName" and "EditorClassName" props of the Editor
 
-const styles: { [key: string]: React.CSSProperties } = {
-  toolbarStyles: {
-    // background: 'yellow',
-    // height: 50,
-    // background: '#363636',
-    // display: 'flex',
-    // alignItems: 'center',
-    width: 200,
-    // gap: 20,
-    // justifyContent: 'space-between',
-    // flexWrap: 'nowrap',
-    // overflowX: 'scroll',
-    // overflowY: 'scroll',
-    // whiteSpace: 'nowrap',
-    // position: 'absolute',
-    // bottom: 200,
-  },
-};
-
+// nextjs SSR specific shenanigangs
 import dynamic from 'next/dynamic';
 const Editor = dynamic<EditorProps>(
   () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
   { ssr: false }
 );
 
-const TextEditorDark = () => {
+const TextEditor = () => {
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   );
 
+  // save the current note to the database
+  // should be called timely for autosave
+  // should be called in the return of useEffect() so note gets saved when component dismounts
   const handlePost = async () => {
     try {
       const rawEditorContent = JSON.stringify(
@@ -55,6 +40,7 @@ const TextEditorDark = () => {
     }
   };
 
+  // getting the content of the note and updates the Editor's state
   const handleGet = async () => {
     try {
       const requestOptions = {
@@ -84,8 +70,8 @@ const TextEditorDark = () => {
         editorState={editorState}
         onEditorStateChange={setEditorState}
         // toolbarStyle={styles.toolbarStyles}
-        wrapperClassName="editor-wrapper"
-        // editorClassName="editor-wrapper"
+        // wrapperClassName="wrapper-styles"
+        // editorClassName="editor-styles"
         // toolbarStyle=ToolbarStyleObject,
         toolbarClassName="toolbar-wrapper-dark"
         // toolbarOnFocus
@@ -107,4 +93,4 @@ const TextEditorDark = () => {
   );
 };
 
-export default TextEditorDark;
+export default TextEditor;

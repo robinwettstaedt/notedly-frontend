@@ -1,12 +1,8 @@
 import React from 'react';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
-import toolbarDefaultsDark from '../../../utils/DraftEditorUtils/toolbarDefaultsDark';
+import toolbarDefaultsLight from '../../../utils/DraftEditorUtils/toolbarDefaultsLight';
 // import '../../../styles/TextEditorLight.module.css';
-
-// have 1 TextEditor, with 1 CSS file that has preferred theme query in which the default classes' colors are updated
-// toolbar= themeContext === 'dark' ? {toolbarDefaultsDark} : {toolbarDefaultsLight} in which the right SVG are given
-// if necessary make use of the "wrapperClassName" and "EditorClassName" props of the Editor
 
 const styles: { [key: string]: React.CSSProperties } = {
   toolbarStyles: {
@@ -33,7 +29,7 @@ const Editor = dynamic<EditorProps>(
   { ssr: false }
 );
 
-const TextEditorDark = () => {
+const TextEditorLight = () => {
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   );
@@ -78,18 +74,18 @@ const TextEditorDark = () => {
   };
 
   return (
-    <div className="bg-gray-200 h-screen">
+    <div className="bg-gray-50">
       <Editor
         // blockStyleFn={() => 'super'}
         editorState={editorState}
         onEditorStateChange={setEditorState}
         // toolbarStyle={styles.toolbarStyles}
-        wrapperClassName="editor-wrapper"
-        // editorClassName="editor-wrapper"
+        // wrapperClassName="wrapper-styles"
+        // editorClassName="editor-styles"
         // toolbarStyle=ToolbarStyleObject,
-        toolbarClassName="toolbar-wrapper-dark"
+        toolbarClassName="toolbar-wrapper-light"
         // toolbarOnFocus
-        toolbar={toolbarDefaultsDark}
+        toolbar={toolbarDefaultsLight}
       />
       <button
         className="px-4 py-2 m-2 bg-gray-500 text-gray-50 border rounded"
@@ -107,4 +103,4 @@ const TextEditorDark = () => {
   );
 };
 
-export default TextEditorDark;
+export default TextEditorLight;

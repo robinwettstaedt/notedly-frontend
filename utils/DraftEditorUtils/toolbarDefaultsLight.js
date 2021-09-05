@@ -16,7 +16,7 @@ const toolbarDefaults = {
   ],
   inline: {
     inDropdown: true,
-    className: 'icons-dark',
+    className: undefined,
     component: undefined,
     dropdownClassName: undefined,
     options: [
@@ -28,7 +28,7 @@ const toolbarDefaults = {
       'superscript',
       'subscript',
     ],
-    bold: { icon: 'icons-dark/B.svg', className: undefined },
+    // bold: { icon: bold, className: undefined },
     // italic: { icon: italic, className: undefined },
     // underline: { icon: underline, className: undefined },
     // strikethrough: { icon: strikethrough, className: undefined },
