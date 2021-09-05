@@ -78,27 +78,28 @@ const TextEditorDark = () => {
   };
 
   return (
-    <div className="bg-gray-200 h-screen">
+    <div>
+      <div className="w-screen bg-gray-800 h-40" />
       <Editor
         // blockStyleFn={() => 'super'}
         editorState={editorState}
         onEditorStateChange={setEditorState}
         // toolbarStyle={styles.toolbarStyles}
         wrapperClassName="editor-wrapper"
-        // editorClassName="editor-wrapper"
+        editorClassName="editor-wrapper"
         // toolbarStyle=ToolbarStyleObject,
         toolbarClassName="toolbar-wrapper-dark"
         // toolbarOnFocus
         toolbar={toolbarDefaultsDark}
       />
       <button
-        className="px-4 py-2 m-2 bg-gray-500 text-gray-50 border rounded"
+        className="px-4 py-2  bg-gray-500 text-gray-50 border rounded"
         onClick={handleGet}
       >
         Get
       </button>
       <button
-        className="px-4 py-2 m-2 bg-gray-500 text-gray-50 border rounded-md"
+        className="px-4 py-2  bg-gray-500 text-gray-50 border rounded-md"
         onClick={handlePost}
       >
         Post
