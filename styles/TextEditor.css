@@ -111,10 +111,17 @@
     padding: 0;
     max-height: 250px;
     overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.rdw-dropdown-optionwrapper::-webkit-scrollbar {
+    display: none;
+    /* for Chrome, Safari, and Opera */
 }
 
 .rdw-dropdown-optionwrapper:hover {
-    box-shadow: 1px 1px 0px #bfbdbd;
+    box-shadow: none;
     background-color: #ffffff;
 }
 
@@ -294,6 +301,8 @@
     z-index: 100;
     background: white;
     box-shadow: 3px 3px 5px #bfbdbd;
+    /* own addition */
+    border-radius: 8px;
 }
 
 .rdw-colorpicker-modal-header {
@@ -679,13 +688,15 @@
     left: 5px;
     display: flex;
     flex-direction: column;
-    width: 235px;
+    /* width: 235px; */
     border: 1px solid #f1f1f1;
     padding: 15px;
     border-radius: 2px;
     z-index: 100;
     background: white;
     box-shadow: 3px 3px 5px #bfbdbd;
+    /* own addition */
+    border-radius: 8px;
 }
 
 .rdw-image-modal-header {
@@ -1000,7 +1011,7 @@
 /* toolbar container */
 
 .rdw-editor-toolbar {
-    padding: 8px;
+    padding: 8px 4px 4px;
     /* border-radius: 2px; */
     /* border: 1px solid #f1f1f1; */
     display: flex;
@@ -1288,9 +1299,6 @@
     }
     .rdw-dropdown-optionwrapper::-webkit-scrollbar {
         display: none;
-        /* width: 2px; */
-        /* height: 100%; */
-        /* background-color: var(--grey-400); */
         /* for Chrome, Safari, and Opera */
     }
     .rdw-dropdown-optionwrapper:hover {
@@ -1301,6 +1309,8 @@
         border: none;
         height: 100%;
         width: 100%;
+        /* padding: 0 10px; */
+        border-radius: 6px;
         background: var(--grey-600);
     }
     .rdw-option-wrapper:hover {
@@ -1308,14 +1318,10 @@
         background-color: var(--grey-400);
     }
     .rdw-option-wrapper:active {
-        box-shadow: 1px 1px 0px #bfbdbd inset;
+        box-shadow: none;
     }
     .rdw-option-active {
-        box-shadow: 1px 1px 0px #bfbdbd inset;
-    }
-    .rdw-option-disabled {
-        opacity: 0.3;
-        cursor: default;
+        box-shadow: none;
     }
     .rdw-dropdown-wrapper {
         border: none;
@@ -1335,27 +1341,16 @@
         background: var(--grey-400);
     }
     .rdw-colorpicker-modal {
-        position: absolute;
-        top: 35px;
-        left: 5px;
-        display: flex;
-        flex-direction: column;
-        width: 175px;
-        height: 175px;
-        border: 1px solid #f1f1f1;
-        padding: 15px;
-        border-radius: 2px;
-        z-index: 100;
-        background: white;
-        box-shadow: 3px 3px 5px #bfbdbd;
-    }
-    .rdw-colorpicker-modal-style-label-active {
-        border-bottom: 2px solid #0a66b7;
+        color: white;
+        background-color: var(--grey-600);
+        border: 1px solid var(--grey-800);
+        border-radius: 8px;
+        box-shadow: 3px 3px 20px var(--grey-600);
     }
     .rdw-colorpicker-cube {
         width: 22px;
         height: 22px;
-        border: 1px solid #f1f1f1;
+        border: 1px solid var(--grey-600);
     }
     .rdw-colorpicker-option {
         margin: 3px;
@@ -1365,133 +1360,24 @@
         width: 22px;
         height: 22px;
         min-width: 22px;
-        box-shadow: 1px 2px 1px #bfbdbd inset;
+        box-shadow: none;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .rdw-colorpicker-modal-options::-webkit-scrollbar {
+        display: none;
+        /* for Chrome, Safari, and Opera */
     }
     .rdw-colorpicker-option:hover {
-        box-shadow: 1px 2px 1px #bfbdbd;
+        box-shadow: 1px 1px 15px black;
     }
     .rdw-colorpicker-option:active {
-        box-shadow: -1px -2px 1px #bfbdbd;
+        box-shadow: 1px 1px 15px var(--grey-400);
     }
     .rdw-colorpicker-option-active {
-        box-shadow: 0px 0px 2px 2px #bfbdbd;
+        box-shadow: 1px 1px 15px var(--grey-400);
     }
-    .rdw-link-modal {
-        position: absolute;
-        top: 35px;
-        left: 5px;
-        display: flex;
-        flex-direction: column;
-        width: 235px;
-        height: 205px;
-        border: 1px solid #f1f1f1;
-        padding: 15px;
-        border-radius: 2px;
-        z-index: 100;
-        background: white;
-        box-shadow: 3px 3px 5px #bfbdbd;
-    }
-    .rdw-link-modal-input {
-        margin-top: 5px;
-        border-radius: 2px;
-        border: 1px solid #f1f1f1;
-        height: 25px;
-        margin-bottom: 15px;
-        padding: 0 5px;
-    }
-    .rdw-link-modal-btn {
-        margin-left: 10px;
-        width: 75px;
-        height: 30px;
-        border: 1px solid #f1f1f1;
-        border-radius: 2px;
-        cursor: pointer;
-        background: white;
-        text-transform: capitalize;
-    }
-    .rdw-link-modal-btn:hover {
-        box-shadow: 1px 1px 0px #bfbdbd;
-    }
-    .rdw-link-modal-btn:active {
-        box-shadow: 1px 1px 0px #bfbdbd inset;
-    }
-    .rdw-link-modal-btn:disabled {
-        background: #ece9e9;
-    }
-    .rdw-embedded-modal {
-        position: absolute;
-        top: 35px;
-        left: 5px;
-        display: flex;
-        flex-direction: column;
-        width: 235px;
-        height: 180px;
-        border: 1px solid #f1f1f1;
-        padding: 15px;
-        border-radius: 2px;
-        z-index: 100;
-        background: white;
-        justify-content: space-between;
-        box-shadow: 3px 3px 5px #bfbdbd;
-    }
-    .rdw-embedded-modal-header-label {
-        width: 95px;
-        border: 1px solid #f1f1f1;
-        margin-top: 5px;
-        background: #6eb8d4;
-        border-bottom: 2px solid #0a66b7;
-    }
-    .rdw-embedded-modal-link-input {
-        width: 88%;
-        height: 35px;
-        margin: 10px 0;
-        border: 1px solid #f1f1f1;
-        border-radius: 2px;
-        font-size: 15px;
-        padding: 0 5px;
-    }
-    .rdw-embedded-modal-btn {
-        margin: 0 3px;
-        width: 75px;
-        height: 30px;
-        border: 1px solid #f1f1f1;
-        border-radius: 2px;
-        cursor: pointer;
-        background: white;
-        text-transform: capitalize;
-    }
-    .rdw-embedded-modal-btn:hover {
-        box-shadow: 1px 1px 0px #bfbdbd;
-    }
-    .rdw-embedded-modal-btn:active {
-        box-shadow: 1px 1px 0px #bfbdbd inset;
-    }
-    .rdw-embedded-modal-btn:disabled {
-        background: #ece9e9;
-    }
-    .rdw-embedded-modal-size-input {
-        width: 80%;
-        height: 20px;
-        border: 1px solid #f1f1f1;
-        border-radius: 2px;
-        font-size: 12px;
-    }
-    .rdw-emoji-modal {
-        overflow: auto;
-        position: absolute;
-        top: 35px;
-        left: 5px;
-        display: flex;
-        flex-wrap: wrap;
-        width: 235px;
-        height: 180px;
-        border: 1px solid #f1f1f1;
-        padding: 15px;
-        border-radius: 2px;
-        z-index: 100;
-        background: white;
-        box-shadow: 3px 3px 5px #bfbdbd;
-    }
+    /* the fuck is this spinner? */
     .rdw-spinner>div {
         width: 12px;
         height: 12px;
@@ -1501,19 +1387,26 @@
         -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
         animation: sk-bouncedelay 1.4s infinite ease-in-out both;
     }
-    .rdw-image-modal {
+    /* image may need custom component so no styling for now ############################################################### */
+    /* .rdw-image-modal {
         position: absolute;
         top: 35px;
         left: 5px;
         display: flex;
         flex-direction: column;
-        width: 235px;
+         width: 235px; 
         border: 1px solid #f1f1f1;
         padding: 15px;
         border-radius: 2px;
         z-index: 100;
         background: white;
         box-shadow: 3px 3px 5px #bfbdbd;
+         own addition 
+        color: white;
+        background-color: var(--grey-600);
+        border: 1px solid var(--grey-800);
+        border-radius: 8px;
+        box-shadow: 3px 3px 20px var(--grey-600);
     }
     .rdw-image-modal-header-label {
         width: 80px;
@@ -1585,46 +1478,9 @@
         border: 1px solid #f1f1f1;
         border-radius: 2px;
         font-size: 12px;
-    }
-    .rdw-link-decorator-icon {
-        position: absolute;
-        left: 40%;
-        top: 0;
-        cursor: pointer;
-        background-color: white;
-    }
-    .rdw-mention-link {
-        text-decoration: none;
-        color: #1236ff;
-        background-color: #f0fbff;
-        padding: 1px 2px;
-        border-radius: 2px;
-    }
-    .rdw-suggestion-dropdown {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid #f1f1f1;
-        min-width: 100px;
-        max-height: 150px;
-        overflow: auto;
-        background: white;
-        z-index: 100;
-    }
-    .rdw-suggestion-option {
-        padding: 7px 5px;
-        border-bottom: 1px solid #f1f1f1;
-    }
-    .rdw-suggestion-option-active {
-        background-color: #f1f1f1;
-    }
-    .rdw-hashtag-link {
-        text-decoration: none;
-        color: #1236ff;
-        background-color: #f0fbff;
-        padding: 1px 2px;
-        border-radius: 2px;
-    }
+    } 
+	
+
     .rdw-image-alignment-options-popup {
         position: absolute;
         background: white;
@@ -1636,52 +1492,8 @@
         cursor: pointer;
         z-index: 100;
     }
+	*/
     .rdw-editor-toolbar {
         background: var(--grey-800);
     }
-    .rdw-editor-main blockquote {
-        border-left: 5px solid #f1f1f1;
-        padding-left: 5px;
-    }
-    .rdw-editor-main pre {
-        background: #f1f1f1;
-        border-radius: 3px;
-        padding: 1px 10px;
-    }
 }
-
-
-/* own classes ############################################################# */
-
-
-/* .toolbar-wrapper-light {
-    display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
-    gap: 1vw;
-    margin: 0;
-}
-
-.icons-light {
-    background: #000;
-}
-
-.toolbar-wrapper-dark {
-    display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
-    gap: 1vw;
-    background-color: #272727;
-}
-
-.icon-background-dark {
-    background: #363636;
-    color: white;
-    border: none;
-    color: white;
-}
-
-.editor-wrapper {
-    margin: 0;
-    padding: 0;
-} */
