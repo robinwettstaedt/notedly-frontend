@@ -1492,6 +1492,7 @@
         cursor: pointer;
         z-index: 100;
     }
+	
 	*/
     .rdw-editor-toolbar {
         background: var(--grey-800);
