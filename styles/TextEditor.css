@@ -14,6 +14,7 @@
     --yellow: #daba5a;
     --red: #c3605a;
     --blue: #5a84c3;
+    --some-grey: #f2f2f2;
 }
 
 .rdw-option-wrapper {
@@ -1021,7 +1022,7 @@
     /* border: 1px solid #f1f1f1; */
     display: flex;
     justify-content: flex-start;
-    background: white;
+    background: var(--some-grey);
     flex-wrap: nowrap;
     font-size: 15px;
     margin-bottom: 5px;

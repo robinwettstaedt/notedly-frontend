@@ -75,7 +75,7 @@ const TextEditor = () => {
         // toolbarStyle=ToolbarStyleObject,
         toolbarClassName="toolbar-wrapper-dark"
         // toolbarOnFocus
-        toolbar={toolbarDefaultsDark}
+        toolbar={toolbarDefaultsLight}
       />
       <button
         className="px-4 py-2 m-2 bg-gray-500 text-gray-50 border rounded"
