@@ -2,12 +2,6 @@ import React from 'react';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
 import toolbarDefaultsDark from '../../../utils/DraftEditorUtils/toolbarDefaultsDark';
-import toolbarDefaultsLight from '../../../utils/DraftEditorUtils/toolbarDefaultsLight';
-import '../../../styles/NewTextEditorDark.module.css';
-
-// have 1 TextEditor, with 1 CSS file that has preferred theme query in which the default classes' colors are updated
-// toolbar= themeContext === 'dark' ? {toolbarDefaultsDark} : {toolbarDefaultsLight} in which the right SVG are given
-// if necessary make use of the "wrapperClassName" and "EditorClassName" props of the Editor
 
 // nextjs SSR specific shenanigangs
 import dynamic from 'next/dynamic';
@@ -16,7 +10,7 @@ const Editor = dynamic<EditorProps>(
   { ssr: false }
 );
 
-const TextEditor = () => {
+const TextEditorDark = () => {
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   );
@@ -65,33 +59,19 @@ const TextEditor = () => {
   };
 
   return (
-    <div className="bg-gray-200 h-screen">
+    <>
       <Editor
-        // blockStyleFn={() => 'super'}
         editorState={editorState}
         onEditorStateChange={setEditorState}
-        // toolbarStyle={styles.toolbarStyles}
         // wrapperClassName="wrapper-styles"
         // editorClassName="editor-styles"
-        // toolbarStyle=ToolbarStyleObject,
-        // toolbarClassName="toolbar-wrapper-dark"
-        // toolbarOnFocus
+        toolbarClassName="toolbar-wrapper-dark"
         toolbar={toolbarDefaultsDark}
       />
-      <button
-        className="px-4 py-2 m-2 bg-gray-500 text-gray-50 border rounded"
-        onClick={handleGet}
-      >
-        Get
-      </button>
-      <button
-        className="px-4 py-2 m-2 bg-gray-500 text-gray-50 border rounded-md"
-        onClick={handlePost}
-      >
-        Post
-      </button>
-    </div>
+      <button onClick={handleGet}>Get</button>
+      <button onClick={handlePost}>Post</button>
+    </>
   );
 };
 
-export default TextEditor;
+export default TextEditorDark;

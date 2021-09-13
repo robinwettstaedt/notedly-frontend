@@ -1,15 +1,11 @@
-import React from 'react';
 import NewTextEditorLight from './edit/NewTextEditorLight';
-import TextEditorDark from './edit/NewTextEditorDark';
-import TextEditor from './edit/TextEditor';
+import NewTextEditorDark from './edit/NewTextEditorDark';
 
 const index = () => {
   return (
     <div>
-      {/* <TextEditorLight /> */}
-      {/* <TextEditorDark /> */}
+      <NewTextEditorDark />
       <NewTextEditorLight />
-      {/* <TextEditor /> */}
     </div>
   );
 };

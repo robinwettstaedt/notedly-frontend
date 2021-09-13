@@ -16,9 +16,9 @@ const toolbarDefaults = {
   ],
   inline: {
     inDropdown: true,
-    className: 'button-wrapper',
+    className: 'icon-wrapper-light',
     component: undefined,
-    dropdownClassName: 'dropdown',
+    dropdownClassName: 'dropdown-light',
     options: [
       'bold',
       'italic',
@@ -41,9 +41,9 @@ const toolbarDefaults = {
   },
   image: {
     icon: 'icons-light/frame.svg',
-    className: 'icon-background-light',
+    className: 'icon-wrapper-light',
     component: undefined,
-    popupClassName: undefined,
+    popupClassName: 'image-popup-light',
     urlEnabled: true,
     uploadEnabled: true,
     alignmentEnabled: true,
@@ -58,9 +58,9 @@ const toolbarDefaults = {
   },
   history: {
     inDropdown: true,
-    className: 'icon-background-light',
+    className: 'icon-wrapper-light',
     component: undefined,
-    dropdownClassName: undefined,
+    dropdownClassName: 'dropdown-light',
     options: ['undo', 'redo'],
     undo: { icon: 'icons-light/undo.svg', className: undefined },
     redo: { icon: 'icons-light/redo.svg', className: undefined },
@@ -68,15 +68,15 @@ const toolbarDefaults = {
   fontSize: {
     // icon: fontSize,
     options: [8, 9, 10, 11, 12, 14, 16, 18, 24, 30, 36, 48, 60, 72, 96],
-    className: 'icon-background-light',
+    className: 'icon-wrapper-light',
     component: undefined,
-    dropdownClassName: undefined,
+    dropdownClassName: 'dropdown-light',
   },
   list: {
     inDropdown: true,
-    className: 'icon-background-light',
+    className: 'icon-wrapper-light',
     component: undefined,
-    dropdownClassName: undefined,
+    dropdownClassName: 'dropdown-light',
     options: ['unordered', 'ordered', 'indent', 'outdent'],
     unordered: { icon: 'icons-light/dottedList.svg', className: undefined },
     ordered: { icon: 'icons-light/orderedList.svg', className: undefined },
@@ -85,9 +85,9 @@ const toolbarDefaults = {
   },
   textAlign: {
     inDropdown: true,
-    className: 'icon-background-light',
+    className: 'icon-wrapper-light',
     component: undefined,
-    dropdownClassName: undefined,
+    dropdownClassName: 'dropdown-light',
     options: ['left', 'center', 'right', 'justify'],
     left: { icon: 'icons-light/leftAlign.svg', className: undefined },
     center: { icon: 'icons-light/centerAlign.svg', className: undefined },
@@ -96,9 +96,9 @@ const toolbarDefaults = {
   },
   colorPicker: {
     icon: 'icons-light/pen.svg',
-    className: 'icon-background-light',
+    className: 'icon-wrapper-light',
     component: undefined,
-    popupClassName: undefined,
+    popupClassName: 'colorpicker-popup-light',
     colors: [
       'rgb(97,189,109)',
       'rgb(26,188,156)',
@@ -144,7 +144,7 @@ const toolbarDefaults = {
   //     ],
   //     className: undefined,
   //     component: undefined,
-  //     dropdownClassName: undefined,
+  //     dropdownClassName: 'dropdown-light',
   //   },
 
   //   fontFamily: {
@@ -158,7 +158,7 @@ const toolbarDefaults = {
   //     ],
   //     className: undefined,
   //     component: undefined,
-  //     dropdownClassName: undefined,
+  //     dropdownClassName: 'dropdown-light',
   //   },
 
   //   link: {
@@ -166,7 +166,7 @@ const toolbarDefaults = {
   //     className: undefined,
   //     component: undefined,
   //     popupClassName: undefined,
-  //     dropdownClassName: undefined,
+  //     dropdownClassName: 'dropdown-light',
   //     showOpenOptionOnHover: true,
   //     defaultTargetOption: '_self',
   //     options: ['link', 'unlink'],

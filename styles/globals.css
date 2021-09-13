@@ -1,8 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* :root {
+:root {
     --grey-50: #d2d2d2;
     --grey-100: #c3c3c3;
     --grey-200: #aeaeae;
@@ -19,34 +15,13 @@
     --red: #c3605a;
     --blue: #5a84c3;
     --some-grey: #f2f2f2;
-} */
+}
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
-}
-
-@layer utilities {
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
-    /* .toolbar-styles {
-        @apply hidden;
-    } */
-    /* .editor-styles {
-        @apply bg-blue-500;
-    }
-    .wrapper-styles {
-        @apply bg-gray-500;
-    } */
-    img {
-        height: 15px;
-        width: 15px;
-    }
 }
 
 .rdw-option-wrapper {
@@ -1312,35 +1287,298 @@
 }
 
 
-/*# sourceMappingURL=react-draft-wysiwyg.css.map*/
+/* classNames on the Editor Component itself ########################################################*/
 
 
-/* own style try with attached classnames */
+/* light */
 
-.button-wrapper {}
+.toolbar-wrapper-light .rdw-dropdown-carettoopen {
+    border-top: 6px solid black;
+}
 
-.dropdown {
-    background-color: pink;
+.toolbar-wrapper-light .rdw-dropdown-carettoclose {
+    border-top: 6px solid black;
 }
 
 
-/* .rdw-dropdown-carettoopen {
-    height: 0px;
-    width: 0px;
-    position: absolute;
-    top: 40%;
-    right: 10%;
-    border-top: 6px solid blue;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-} */
+/* dark */
 
-.button-wrapper-dropdown-carettoclose {}
+.toolbar-wrapper-dark .rdw-dropdown-carettoopen {
+    border-top: 6px solid white;
+}
 
-.toolbar-wrapper-light .rdw-dropdown-carettoopen {
-    border-top: 6px solid green;
+.toolbar-wrapper-dark .rdw-dropdown-carettoclose {
+    border-top: 6px solid white;
+}
+
+
+/* classNames from  toolbarDefaultsLight.js #############################################################*/
+
+.icon-wrapper-light {}
+
+.dropdown-light {}
+
+.colorpicker-popup-light {}
+
+.image-popup-light {}
+
+
+/* classNames from  toolbarDefaultsDark.js ################################################################# */
+
+.icon-wrapper-dark {}
+
+.dropdown-dark {}
+
+.colorpicker-popup-dark {}
+
+.image-popup-dark {}
+
+
+/* dark mode classes ####################################################### */
+
+.toolbar-wrapper-dark {
+    background: var(--grey-800);
+}
+
+.toolbar-wrapper-dark .rdw-dropdown-selectedtext {
+    color: white;
 }
 
 .toolbar-wrapper-dark .rdw-dropdown-carettoopen {
-    border-top: 6px solid pink;
+    border-top: 6px solid white;
 }
+
+.toolbar-wrapper-dark .rdw-dropdown-carettoclose {
+    border-top: 6px solid white;
+}
+
+.toolbar-wrapper-dark .rdw-dropdown-optionwrapper {
+    color: white;
+    border: 1px solid var(--grey-800);
+    background: var(--grey-600);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    /* FF and Edge */
+}
+
+.toolbar-wrapper-dark .rdw-dropdown-optionwrapper::-webkit-scrollbar {
+    display: none;
+    /* for Chrome, Safari, and Opera */
+}
+
+.toolbar-wrapper-dark .rdw-dropdown-optionwrapper:hover {
+    box-shadow: none;
+    background-color: var(--grey-600);
+}
+
+.toolbar-wrapper-dark .rdw-option-wrapper {
+    border: none;
+    height: 100%;
+    width: 100%;
+    /* padding: 0 10px; */
+    border-radius: 6px;
+    background: var(--grey-600);
+}
+
+.toolbar-wrapper-dark .rdw-option-wrapper:hover {
+    box-shadow: none;
+    background-color: var(--grey-400);
+}
+
+.toolbar-wrapper-dark .rdw-option-wrapper:active {
+    box-shadow: none;
+}
+
+.toolbar-wrapper-dark .rdw-option-active {
+    box-shadow: none;
+}
+
+.toolbar-wrapper-dark .rdw-dropdown-wrapper {
+    border: none;
+    background: var(--grey-600);
+}
+
+.toolbar-wrapper-dark .rdw-dropdown-wrapper:hover {
+    box-shadow: none;
+    background-color: var(--grey-400);
+}
+
+.toolbar-wrapper-dark .rdw-dropdown-wrapper:active {
+    box-shadow: 1px 1px 0px var(--grey-400) inset;
+}
+
+.toolbar-wrapper-dark .rdw-dropdownoption-highlighted {
+    background: var(--grey-400);
+}
+
+.toolbar-wrapper-dark .rdw-dropdownoption-active {
+    background: var(--grey-400);
+}
+
+.toolbar-wrapper-dark .rdw-colorpicker-modal {
+    color: white;
+    background-color: var(--grey-600);
+    border: 1px solid var(--grey-800);
+    border-radius: 8px;
+    box-shadow: 3px 3px 20px var(--grey-600);
+}
+
+.toolbar-wrapper-dark .rdw-colorpicker-cube {
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--grey-600);
+}
+
+.toolbar-wrapper-dark .rdw-colorpicker-option {
+    margin: 3px;
+    padding: 0;
+    min-height: 20px;
+    border: none;
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    box-shadow: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.toolbar-wrapper-dark .rdw-colorpicker-modal-options::-webkit-scrollbar {
+    display: none;
+    /* for Chrome, Safari, and Opera */
+}
+
+.toolbar-wrapper-dark .rdw-colorpicker-option:hover {
+    box-shadow: 1px 1px 15px black;
+}
+
+.toolbar-wrapper-dark .rdw-colorpicker-option:active {
+    box-shadow: 1px 1px 15px var(--grey-400);
+}
+
+.toolbar-wrapper-dark .rdw-colorpicker-option-active {
+    box-shadow: 1px 1px 15px var(--grey-400);
+}
+
+
+/* the fuck is this spinner? */
+
+.toolbar-wrapper-dark .rdw-spinner>div {
+    width: 12px;
+    height: 12px;
+    background-color: #333;
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+
+/* image may need custom component so no styling for now ############################################################### */
+
+
+/* .rdw-image-modal {
+        position: absolute;
+        top: 35px;
+        left: 5px;
+        display: flex;
+        flex-direction: column;
+         width: 235px; 
+        border: 1px solid #f1f1f1;
+        padding: 15px;
+        border-radius: 2px;
+        z-index: 100;
+        background: white;
+        box-shadow: 3px 3px 5px #bfbdbd;
+         own addition 
+        color: white;
+        background-color: var(--grey-600);
+        border: 1px solid var(--grey-800);
+        border-radius: 8px;
+        box-shadow: 3px 3px 20px var(--grey-600);
+    }
+    .rdw-image-modal-header-label {
+        width: 80px;
+        background: #f1f1f1;
+        border: 1px solid #f1f1f1;
+        margin-top: 5px;
+    }
+    .rdw-image-modal-header-label-highlighted {
+        background: #6eb8d4;
+        border-bottom: 2px solid #0a66b7;
+    }
+    .rdw-image-modal-upload-option {
+        width: 100%;
+        color: gray;
+        cursor: pointer;
+        display: flex;
+        border: none;
+        font-size: 15px;
+        align-items: center;
+        justify-content: center;
+        background-color: #f1f1f1;
+        outline: 2px dashed gray;
+        outline-offset: -10px;
+        margin: 10px 0;
+        padding: 9px 0;
+    }
+    .rdw-image-modal-upload-option-highlighted {
+        outline: 2px dashed #0a66b7;
+    }
+    .rdw-image-modal-url-input {
+        width: 90%;
+        height: 35px;
+        margin: 15px 0 12px;
+        border: 1px solid #f1f1f1;
+        border-radius: 2px;
+        font-size: 15px;
+        padding: 0 5px;
+    }
+    .rdw-image-modal-btn {
+        margin: 0 5px;
+        width: 75px;
+        height: 30px;
+        border: 1px solid #f1f1f1;
+        border-radius: 2px;
+        cursor: pointer;
+        background: white;
+        text-transform: capitalize;
+    }
+    .rdw-image-modal-btn:hover {
+        box-shadow: 1px 1px 0px #bfbdbd;
+    }
+    .rdw-image-modal-btn:active {
+        box-shadow: 1px 1px 0px #bfbdbd inset;
+    }
+    .rdw-image-modal-btn:disabled {
+        background: #ece9e9;
+    }
+    .rdw-image-modal-alt-input {
+        width: 70%;
+        height: 20px;
+        border: 1px solid #f1f1f1;
+        border-radius: 2px;
+        font-size: 12px;
+        margin-left: 5px;
+    }
+    .rdw-image-modal-size-input {
+        width: 40%;
+        height: 20px;
+        border: 1px solid #f1f1f1;
+        border-radius: 2px;
+        font-size: 12px;
+    } 
+	
+
+    .rdw-image-alignment-options-popup {
+        position: absolute;
+        background: white;
+        display: flex;
+        padding: 5px 2px;
+        border-radius: 2px;
+        border: 1px solid #f1f1f1;
+        width: 105px;
+        cursor: pointer;
+        z-index: 100;
+    }
+	
+	*/

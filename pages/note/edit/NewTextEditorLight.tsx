@@ -16,7 +16,7 @@ const Editor = dynamic<EditorProps>(
   { ssr: false }
 );
 
-const TextEditor = () => {
+const TextEditorLight = () => {
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   );
@@ -65,33 +65,19 @@ const TextEditor = () => {
   };
 
   return (
-    <div className="bg-gray-200 h-screen">
+    <>
       <Editor
-        // blockStyleFn={() => 'super'}
         editorState={editorState}
         onEditorStateChange={setEditorState}
-        // toolbarStyle={styles.toolbarStyles}
         // wrapperClassName="wrapper-styles"
         // editorClassName="editor-styles"
-        // toolbarStyle=ToolbarStyleObject,
         toolbarClassName="toolbar-wrapper-light"
-        // toolbarOnFocus
         toolbar={toolbarDefaultsLight}
       />
-      <button
-        className="px-4 py-2 m-2 bg-gray-500 text-gray-50 border rounded"
-        onClick={handleGet}
-      >
-        Get
-      </button>
-      <button
-        className="px-4 py-2 m-2 bg-gray-500 text-gray-50 border rounded-md"
-        onClick={handlePost}
-      >
-        Post
-      </button>
-    </div>
+      <button onClick={handleGet}>Get</button>
+      <button onClick={handlePost}>Post</button>
+    </>
   );
 };
 
-export default TextEditor;
+export default TextEditorLight;
