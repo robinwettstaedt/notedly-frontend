@@ -16,9 +16,9 @@ const toolbarDefaults = {
   ],
   inline: {
     inDropdown: true,
-    className: 'icon-background-light',
+    className: 'button-wrapper',
     component: undefined,
-    dropdownClassName: undefined,
+    dropdownClassName: 'button-wrapper-dropdown',
     options: [
       'bold',
       'italic',

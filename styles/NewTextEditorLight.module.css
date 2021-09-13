@@ -1,54 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@value colors: "./colors.css";
 
-/* :root {
-    --grey-50: #d2d2d2;
-    --grey-100: #c3c3c3;
-    --grey-200: #aeaeae;
-    --grey-300: #949494;
-    --grey-400: #707070;
-    --grey-450: #555555;
-    --grey-500: #404040;
-    --grey-600: #363636;
-    --grey-700: #2e2e2e;
-    --grey-800: #272727;
-    --grey-900: #212121;
-    --green: #6da468;
-    --yellow: #daba5a;
-    --red: #c3605a;
-    --blue: #5a84c3;
-    --some-grey: #f2f2f2;
-} */
+/* import multiple from a single file */
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
-}
-
-@layer utilities {
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
-    /* .toolbar-styles {
-        @apply hidden;
-    } */
-    /* .editor-styles {
-        @apply bg-blue-500;
-    }
-    .wrapper-styles {
-        @apply bg-gray-500;
-    } */
-    img {
-        height: 15px;
-        width: 15px;
-    }
-}
-
+@value grey-50,
+grey-100,
+grey-200,
+grey-300,
+grey-400,
+grey-450,
+grey-500,
+grey-600,
+grey-700,
+grey-800,
+grey-900,
+green,
+yellow,
+red,
+blue,
+some-grey from colors;
 .rdw-option-wrapper {
     border: 1px solid #f1f1f1;
     padding: 5px;
@@ -1054,7 +1023,7 @@
     /* border: 1px solid #f1f1f1; */
     display: flex;
     justify-content: flex-start;
-    background: #f2f2f2;
+    background: some-grey;
     flex-wrap: nowrap;
     font-size: 15px;
     margin-bottom: 5px;
@@ -1313,36 +1282,3 @@
 
 
 /*# sourceMappingURL=react-draft-wysiwyg.css.map*/
-
-
-/* own style try with attached classnames */
-
-.button-wrapper {}
-
-.button-wrapper-dropdown {
-    background-color: pink;
-}
-
-.button-wrapper-dropdown .rdw-dropdown-carettoopen {
-    height: 0px;
-    width: 0px;
-    position: absolute;
-    top: 40%;
-    right: 10%;
-    border-top: 6px solid blue;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-}
-
-.button-wrapper-carettoopen {
-    height: 0px;
-    width: 0px;
-    position: absolute;
-    top: 40%;
-    right: 10%;
-    border-top: 6px solid blue;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-}
-
-.button-wrapper-dropwdown-carettoclose {}
