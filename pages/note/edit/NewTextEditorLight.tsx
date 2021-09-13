@@ -74,7 +74,7 @@ const TextEditor = () => {
         // wrapperClassName="wrapper-styles"
         // editorClassName="editor-styles"
         // toolbarStyle=ToolbarStyleObject,
-        // toolbarClassName="toolbar-wrapper-dark"
+        toolbarClassName="toolbar-wrapper-light"
         // toolbarOnFocus
         toolbar={toolbarDefaultsLight}
       />

@@ -1319,11 +1319,12 @@
 
 .button-wrapper {}
 
-.button-wrapper-dropdown {
+.dropdown {
     background-color: pink;
 }
 
-.button-wrapper-dropdown .rdw-dropdown-carettoopen {
+
+/* .rdw-dropdown-carettoopen {
     height: 0px;
     width: 0px;
     position: absolute;
@@ -1332,17 +1333,14 @@
     border-top: 6px solid blue;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
+} */
+
+.button-wrapper-dropdown-carettoclose {}
+
+.toolbar-wrapper-light .rdw-dropdown-carettoopen {
+    border-top: 6px solid green;
 }
 
-.button-wrapper-carettoopen {
-    height: 0px;
-    width: 0px;
-    position: absolute;
-    top: 40%;
-    right: 10%;
-    border-top: 6px solid blue;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
+.toolbar-wrapper-dark .rdw-dropdown-carettoopen {
+    border-top: 6px solid pink;
 }
-
-.button-wrapper-dropwdown-carettoclose {}

@@ -18,7 +18,7 @@ const toolbarDefaults = {
     inDropdown: true,
     className: 'button-wrapper',
     component: undefined,
-    dropdownClassName: 'button-wrapper-dropdown',
+    dropdownClassName: 'dropdown',
     options: [
       'bold',
       'italic',
