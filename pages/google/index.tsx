@@ -1,0 +1,39 @@
+import React, { useState, useEffect } from 'react';
+import GoogleLogin from 'react-google-login';
+
+const Index = () => {
+  const [user, setUser] = useState(null);
+
+  const handleLogin = async (googleData: any) => {
+    const res = await fetch('http://localhost:5000/auth/signinwithgoogle', {
+      method: 'POST',
+      body: JSON.stringify({
+        token: googleData.tokenId,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await res.json();
+    setUser(data);
+  };
+
+  useEffect(() => {
+    if (user) console.log(user);
+  }, [user]);
+
+  return (
+    <div>
+      <GoogleLogin
+        // clientId={process.env.GOOGLE_CLIENT_ID}
+        clientId="751209423205-c7a0hvm2m4265p4j5jsfbvsah86n0es0.apps.googleusercontent.com"
+        buttonText="Log in with Google"
+        onSuccess={handleLogin}
+        onFailure={handleLogin}
+        cookiePolicy={'single_host_origin'}
+      />
+    </div>
+  );
+};
+
+export default Index;
