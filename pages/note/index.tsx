@@ -1,4 +1,4 @@
-import NewTextEditorLight from '../../components/TextEditor/NewTextEditorDark';
+import NewTextEditorLight from '../../components/TextEditor/NewTextEditorLight';
 import NewTextEditorDark from '../../components/TextEditor/NewTextEditorDark';
 
 const index = () => {

@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { TokenContext } from '../../lib/contexts/TokenContext';
 
 const SignUp = () => {
+  const { token, setToken } = useContext(TokenContext);
+
   const handleLogin = async (e: React.SyntheticEvent) => {
     try {
       e.preventDefault();
@@ -19,7 +22,14 @@ const SignUp = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, password: password, name: name }),
       };
-      await fetch('http://localhost:5000/api/v1/note', requestOptions);
+      const response = await fetch(
+        'http://localhost:5000/signup',
+        requestOptions
+      );
+
+      const data = await response.json();
+
+      setToken(`Bearer ${data.accessToken}`);
     } catch (error) {
       console.log('error:', error);
     }

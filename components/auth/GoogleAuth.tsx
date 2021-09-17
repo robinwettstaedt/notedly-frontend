@@ -20,7 +20,7 @@ const GoogleAuth = () => {
   return (
     <>
       <GoogleLogin
-        clientId={googleClientID}
+        clientId="751209423205-c7a0hvm2m4265p4j5jsfbvsah86n0es0.apps.googleusercontent.com"
         buttonText="Log in with Google"
         onSuccess={handleLogin}
         onFailure={handleLogin}
