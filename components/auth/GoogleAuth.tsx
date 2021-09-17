@@ -1,34 +1,46 @@
 import { useContext } from 'react';
 import GoogleLogin from 'react-google-login';
 import { TokenContext } from '../../lib/contexts/TokenContext';
+import { useRouter } from 'next/router';
 
 // const googleClientID = process.env.GOOGLE_CLIENT_ID;
 
-const GoogleAuth = () => {
+type GoogleID = {
+  id: string;
+};
+
+const GoogleAuth = ({ id }: GoogleID) => {
+  const router = useRouter();
   const { token, setToken } = useContext(TokenContext);
+
   const handleLogin = async (googleData: any) => {
-    const response = await fetch(
-      'http://localhost:5000/auth/signinwithgoogle',
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          token: googleData.tokenId,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-    const data = await response.json();
-    console.log(data);
-    setToken(`Bearer ${data.accessToken}`);
-    console.log(token);
+    try {
+      const response = await fetch(
+        'http://localhost:5000/auth/signinwithgoogle',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            token: googleData.tokenId,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+      setToken(`Bearer ${data.accessToken}`);
+      console.log(token);
+      router.push('/note');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <>
       <GoogleLogin
-        clientId="751209423205-c7a0hvm2m4265p4j5jsfbvsah86n0es0.apps.googleusercontent.com"
+        clientId={id}
         buttonText="Log in with Google"
         onSuccess={handleLogin}
         onFailure={handleLogin}

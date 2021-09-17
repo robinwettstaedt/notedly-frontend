@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
 import toolbarDefaultsDark from '../../lib/utils/DraftEditorUtils/toolbarDefaultsDark';
+import { useAuthedFetchOnPageLoad } from '../../lib/utils/customHooks/useAuthedFetchOnPageLoad';
 
 // nextjs SSR specific shenanigangs
 import dynamic from 'next/dynamic';
+import { TokenContext } from '../../lib/contexts/TokenContext';
 const Editor = dynamic<EditorProps>(
   () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
   { ssr: false }
 );
 
 const TextEditorDark = () => {
-  const [editorState, setEditorState] = React.useState(
-    EditorState.createEmpty()
-  );
+  const { token } = useContext(TokenContext);
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const auth = 'Authorization';
 
-  // save the current note to the database
-  // should be called timely for autosave
-  // should be called in the return of useEffect() so note gets saved when component dismounts
+  //   save the current note to the database
+  //   should be called timely for autosave
+  //   should be called in the return of useEffect() so note gets saved when component dismounts
   const handlePost = async () => {
     try {
       const rawEditorContent = JSON.stringify(
@@ -28,8 +30,7 @@ const TextEditorDark = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDQ3ZmUzNWJhN2ZlMWY2NWFmYmIyOSIsImlhdCI6MTYzMTg3OTEzOSwiZXhwIjoxNjMxODgwOTM5fQ.nGSR2-E1WYdU3G15Jw8i5u_SlQR02b1IL87K6XUdrqA',
+          auth: token,
         },
         body: JSON.stringify({ content: rawEditorContent }),
       };
@@ -46,8 +47,7 @@ const TextEditorDark = () => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDQ3ZmUzNWJhN2ZlMWY2NWFmYmIyOSIsImlhdCI6MTYzMTg3OTEzOSwiZXhwIjoxNjMxODgwOTM5fQ.nGSR2-E1WYdU3G15Jw8i5u_SlQR02b1IL87K6XUdrqA',
+          auth: token,
         },
       };
       const response = await fetch(

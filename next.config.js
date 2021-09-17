@@ -3,6 +3,6 @@ module.exports = {
   reactStrictMode: true,
   env: {
     customKey: 'my-value',
-    hi: process.env.HI,
+    // hi: process.env.HI,
   },
 };
