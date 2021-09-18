@@ -1,11 +1,11 @@
 import { Router } from 'next/dist/client/router';
-import React, { useContext, useState } from 'react';
+import { useContext, useState, FC } from 'react';
 import { TokenContext } from '../../lib/contexts/TokenContext';
 import { useRouter } from 'next/router';
 
-const SignUp = () => {
+const SignUp: FC = () => {
   const router = useRouter();
-  const { token, setToken } = useContext(TokenContext);
+  const { setToken } = useContext(TokenContext);
 
   const [email, setEmail] = useState<string>('');
   const [pw, setPw] = useState<string>('');
@@ -23,21 +23,16 @@ const SignUp = () => {
     try {
       e.preventDefault();
 
-      const requestOptions = {
+      const response = await fetch('http://localhost:5000/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, password: pw }),
-      };
-      const response = await fetch(
-        'http://localhost:5000/signin',
-        requestOptions
-      );
+        credentials: 'include',
+      });
 
       const data = await response.json();
 
-      console.log(data);
       setToken(`Bearer ${data.accessToken}`);
-      console.log(token);
 
       router.push('/note');
     } catch (error) {

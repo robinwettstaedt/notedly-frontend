@@ -3,6 +3,7 @@ import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
 import toolbarDefaultsDark from '../../lib/utils/DraftEditorUtils/toolbarDefaultsDark';
 import { useAuthedFetchOnPageLoad } from '../../lib/utils/customHooks/useAuthedFetchOnPageLoad';
+import SignOut from '../auth/SingOut';
 
 // nextjs SSR specific shenanigangs
 import dynamic from 'next/dynamic';
@@ -42,7 +43,6 @@ const TextEditorDark = () => {
   // getting the content of the note and updates the Editor's state
   const handleGet = async () => {
     try {
-      console.log(token);
       const requestOptions = {
         method: 'GET',
         headers: {
@@ -77,6 +77,7 @@ const TextEditorDark = () => {
       />
       <button onClick={handleGet}>Get</button>
       <button onClick={handlePost}>Post</button>
+      <SignOut />
     </>
   );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
 import toolbarDefaultsLight from '../../lib/utils/DraftEditorUtils/toolbarDefaultsLight';
+import SignOut from '../auth/SingOut';
 
 // nextjs SSR specific shenanigangs
 import dynamic from 'next/dynamic';
@@ -77,6 +78,7 @@ const TextEditorLight = () => {
       />
       <button onClick={handleGet}>Get</button>
       <button onClick={handlePost}>Post</button>
+      <SignOut />
     </>
   );
 };

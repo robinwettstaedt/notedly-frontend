@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, createContext } from 'react';
 
 type TokenContextType = {
   token: string;
   setToken: (token: string) => void;
 };
 
-export const TokenContext = React.createContext<TokenContextType>({
+export const TokenContext = createContext<TokenContextType>({
   token: '',
   setToken: function () {},
 });
@@ -22,18 +22,16 @@ export const TokenProvider = ({ children }: any) => {
     const refreshToken = async () => {
       const response = await fetch('http://localhost:5000/refresh_token', {
         method: 'POST',
-        body: JSON.stringify({}),
-        headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
       });
-      const data = await response.json();
-      console.log('current accesstoken', token);
 
-      console.log('accesstoken got from refreshing', data.accessToken);
+      const data = await response.json();
+
       if (data.accessToken) {
         setToken(`Bearer ${data.accessToken}`);
       }
     };
+
     let timer = setTimeout(() => {
       refreshToken();
     }, 600000);
