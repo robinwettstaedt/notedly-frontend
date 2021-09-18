@@ -15,22 +15,18 @@ const GoogleAuth = ({ id }: GoogleID) => {
 
   const handleLogin = async (googleData: any) => {
     try {
-      const response = await fetch(
-        'http://localhost:5000/auth/signinwithgoogle',
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            token: googleData.tokenId,
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      const response = await fetch('http://localhost:5000/signinwithgoogle', {
+        method: 'POST',
+        credentials: 'include',
+        body: JSON.stringify({
+          token: googleData.tokenId,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       const data = await response.json();
-      console.log(data);
       setToken(`Bearer ${data.accessToken}`);
-      console.log(token);
       router.push('/note');
     } catch (error) {
       console.log(error);

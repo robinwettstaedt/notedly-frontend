@@ -17,12 +17,31 @@ export const TokenProvider = ({ children }: any) => {
     setTokenState(token);
   };
 
-  //   useEffect(() => {
-  //     app.auth().onAuthStateChanged((user) => {
-  //       setToken(user);
-  //       setPending(false);
-  //     });
-  //   }, []);
+  // after a token is set, a 10 minute timout is initiated which will call the api to refresh the token
+  useEffect(() => {
+    const refreshToken = async () => {
+      const response = await fetch('http://localhost:5000/refresh_token', {
+        method: 'POST',
+        body: JSON.stringify({}),
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+      });
+      const data = await response.json();
+      console.log('current accesstoken', token);
+
+      console.log('accesstoken got from refreshing', data.accessToken);
+      if (data.accessToken) {
+        setToken(`Bearer ${data.accessToken}`);
+      }
+    };
+    let timer = setTimeout(() => {
+      refreshToken();
+    }, 600000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [token]);
 
   return (
     <TokenContext.Provider

@@ -25,21 +25,16 @@ const SignUp = () => {
     try {
       e.preventDefault();
 
-      const requestOptions = {
+      const response = await fetch('http://localhost:5000/signup', {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ firstName: name, email: email, password: pw }),
-      };
-      const response = await fetch(
-        'http://localhost:5000/signup',
-        requestOptions
-      );
+      });
 
       const data = await response.json();
 
-      console.log(data);
       setToken(`Bearer ${data.accessToken}`);
-      console.log(token);
     } catch (error) {
       console.error('error:', error);
     }

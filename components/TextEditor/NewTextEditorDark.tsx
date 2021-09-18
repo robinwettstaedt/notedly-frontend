@@ -15,7 +15,6 @@ const Editor = dynamic<EditorProps>(
 const TextEditorDark = () => {
   const { token } = useContext(TokenContext);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const auth = 'Authorization';
 
   //   save the current note to the database
   //   should be called timely for autosave
@@ -30,7 +29,7 @@ const TextEditorDark = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          auth: token,
+          Authorization: token,
         },
         body: JSON.stringify({ content: rawEditorContent }),
       };
@@ -43,11 +42,12 @@ const TextEditorDark = () => {
   // getting the content of the note and updates the Editor's state
   const handleGet = async () => {
     try {
+      console.log(token);
       const requestOptions = {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          auth: token,
+          Authorization: token,
         },
       };
       const response = await fetch(
