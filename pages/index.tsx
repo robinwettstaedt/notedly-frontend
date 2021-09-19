@@ -1,21 +1,19 @@
-import { useContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { TokenContext } from '../lib/contexts/TokenContext';
 import SignOut from '../components/auth/SingOut';
+import usePrivateRoute from '../components/auth/usePrivateRoute';
+import { GetServerSideProps } from 'next';
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return {
+    props: {},
+  };
+};
 
 const Welcome = () => {
-  const { token } = useContext(TokenContext);
-  const router = useRouter();
-  useEffect(() => {
-    if (!token) {
-      console.log('return to signin fool!!!');
-      router.replace('/signin');
-    }
-  }, [token, router]);
+  usePrivateRoute();
 
   return (
     <>
-      <p>You are authed!</p>
+      <p>Welcome to notedly!</p>
       <SignOut />
     </>
   );
