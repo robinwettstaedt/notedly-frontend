@@ -27,7 +27,7 @@ const GoogleAuth = ({ id }: GoogleID) => {
       });
       const data = await response.json();
       setToken(`Bearer ${data.accessToken}`);
-      router.push('/note');
+      router.push('/');
     } catch (error) {
       console.log(error);
     }

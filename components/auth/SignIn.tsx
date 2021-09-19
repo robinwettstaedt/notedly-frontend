@@ -34,7 +34,7 @@ const SignUp: FC = () => {
 
       setToken(`Bearer ${data.accessToken}`);
 
-      router.push('/note');
+      router.push('/');
     } catch (error) {
       console.error('error:', error);
     }
