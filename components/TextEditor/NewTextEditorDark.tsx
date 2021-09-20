@@ -1,13 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { TokenContext } from '../../lib/contexts/TokenContext';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
 import toolbarDefaultsDark from '../../lib/utils/DraftEditorUtils/toolbarDefaultsDark';
-import { useAuthedFetchOnPageLoad } from '../../lib/utils/customHooks/useAuthedFetchOnPageLoad';
 import SignOut from '../auth/SingOut';
 
 // nextjs SSR specific shenanigangs
 import dynamic from 'next/dynamic';
-import { TokenContext } from '../../lib/contexts/TokenContext';
 const Editor = dynamic<EditorProps>(
   () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
   { ssr: false }
@@ -26,15 +25,14 @@ const TextEditorDark = () => {
         convertToRaw(editorState.getCurrentContent())
       );
 
-      const requestOptions = {
+      await fetch(`${process.env.API_SERVER_URL}/api/v1/note`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
         },
         body: JSON.stringify({ content: rawEditorContent }),
-      };
-      await fetch('http://localhost:5000/api/v1/note', requestOptions);
+      });
     } catch (error) {
       console.log('error:', error);
     }
@@ -43,16 +41,15 @@ const TextEditorDark = () => {
   // getting the content of the note and updates the Editor's state
   const handleGet = async () => {
     try {
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: token,
-        },
-      };
       const response = await fetch(
         'http://localhost:5000/api/v1/note/6144848296e3cb80f085020a',
-        requestOptions
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+        }
       );
 
       const json = await response.json();

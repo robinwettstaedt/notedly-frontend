@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { TokenContext } from '../../lib/contexts/TokenContext';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
 import toolbarDefaultsLight from '../../lib/utils/DraftEditorUtils/toolbarDefaultsLight';
@@ -12,6 +13,7 @@ const Editor = dynamic<EditorProps>(
 );
 
 const TextEditorLight = () => {
+  const { token } = useContext(TokenContext);
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   );
@@ -25,16 +27,14 @@ const TextEditorLight = () => {
         convertToRaw(editorState.getCurrentContent())
       );
 
-      const requestOptions = {
+      await fetch(`${process.env.API_SERVER_URL}/api/v1/note`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDQ3ZmUzNWJhN2ZlMWY2NWFmYmIyOSIsImlhdCI6MTYzMTg3OTEzOSwiZXhwIjoxNjMxODgwOTM5fQ.nGSR2-E1WYdU3G15Jw8i5u_SlQR02b1IL87K6XUdrqA',
+          Authorization: token,
         },
         body: JSON.stringify({ content: rawEditorContent }),
-      };
-      await fetch('http://localhost:5000/api/v1/note', requestOptions);
+      });
     } catch (error) {
       console.log('error:', error);
     }
@@ -43,17 +43,15 @@ const TextEditorLight = () => {
   // getting the content of the note and updates the Editor's state
   const handleGet = async () => {
     try {
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDQ3ZmUzNWJhN2ZlMWY2NWFmYmIyOSIsImlhdCI6MTYzMTg3OTEzOSwiZXhwIjoxNjMxODgwOTM5fQ.nGSR2-E1WYdU3G15Jw8i5u_SlQR02b1IL87K6XUdrqA',
-        },
-      };
       const response = await fetch(
         'http://localhost:5000/api/v1/note/6144848296e3cb80f085020a',
-        requestOptions
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+        }
       );
 
       const json = await response.json();

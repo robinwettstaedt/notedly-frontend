@@ -8,7 +8,7 @@ const SignOut: FC = () => {
 
   const handleClick = async () => {
     try {
-      await fetch('http://localhost:5000/signout', {
+      await fetch(`${process.env.API_SERVER_URL}/signout`, {
         method: 'POST',
         credentials: 'include',
       });

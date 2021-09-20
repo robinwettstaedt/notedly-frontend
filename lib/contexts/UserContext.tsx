@@ -35,15 +35,17 @@ export const UserProvider = ({ children }: any) => {
       try {
         setLoading(true);
 
-        const response = await fetch(`${process.env.SERVER_URL}/api/v1/user`, {
-          method: 'GET',
-          headers: {
-            Authorization: token,
-          },
-        });
+        const response = await fetch(
+          `${process.env.API_SERVER_URL}/api/v1/user`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
 
         const user = await response.json();
-        console.log(user);
 
         if (user) {
           setUser({ user: user });

@@ -23,7 +23,7 @@ const SignUp: FC = () => {
     try {
       e.preventDefault();
 
-      const response = await fetch('http://localhost:5000/signin', {
+      const response = await fetch(`${process.env.API_SERVER_URL}/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, password: pw }),

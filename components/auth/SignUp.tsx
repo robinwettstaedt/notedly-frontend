@@ -25,7 +25,7 @@ const SignUp = () => {
     try {
       e.preventDefault();
 
-      const response = await fetch('http://localhost:5000/signup', {
+      const response = await fetch(`${process.env.API_SERVER_URL}/signup`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

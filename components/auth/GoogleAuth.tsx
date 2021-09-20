@@ -15,16 +15,19 @@ const GoogleAuth = ({ id }: GoogleID) => {
 
   const handleLogin = async (googleData: any) => {
     try {
-      const response = await fetch('http://localhost:5000/signinwithgoogle', {
-        method: 'POST',
-        credentials: 'include',
-        body: JSON.stringify({
-          token: googleData.tokenId,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        `${process.env.API_SERVER_URL}/signinwithgoogle`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          body: JSON.stringify({
+            token: googleData.tokenId,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       const data = await response.json();
       setToken(`Bearer ${data.accessToken}`);
       router.push('/');

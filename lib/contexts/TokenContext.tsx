@@ -30,10 +30,13 @@ export const TokenProvider = ({ children }: any) => {
   useEffect(() => {
     const refreshToken = async () => {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/refresh_token', {
-        method: 'POST',
-        credentials: 'include',
-      });
+      const response = await fetch(
+        `${process.env.API_SERVER_URL}/refresh_token`,
+        {
+          method: 'POST',
+          credentials: 'include',
+        }
+      );
 
       const data = await response.json();
 
