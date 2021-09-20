@@ -1,19 +1,19 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { TokenContext } from '../contexts/TokenContext';
+import { useUserContext } from '../contexts/UserContext';
 
 const usePrivateRoute = () => {
-  const { token } = useContext(TokenContext);
+  const { user } = useUserContext();
   const router = useRouter();
 
   useEffect(() => {
     const handle = async () => {
-      if (!token) {
+      if (user.email === '') {
         await router.replace('/signin');
       }
     };
     handle();
-  }, [token, router]);
+  }, [user, router]);
 };
 
 export default usePrivateRoute;

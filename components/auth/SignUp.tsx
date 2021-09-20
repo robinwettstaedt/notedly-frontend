@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { TokenContext } from '../../lib/contexts/TokenContext';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useTokenContext } from '../../lib/contexts/TokenContext';
 
 const SignUp = () => {
   const router = useRouter();
-  const { token, setToken } = useContext(TokenContext);
+  const { setToken } = useTokenContext();
 
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');

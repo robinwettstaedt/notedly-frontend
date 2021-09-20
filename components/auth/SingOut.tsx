@@ -1,10 +1,9 @@
-import { useContext, FC } from 'react';
-import { TokenContext } from '../../lib/contexts/TokenContext';
 import { useRouter } from 'next/router';
+import { useTokenContext } from '../../lib/contexts/TokenContext';
 
-const SignOut: FC = () => {
+const SignOut = () => {
   const router = useRouter();
-  const { setToken } = useContext(TokenContext);
+  const { setToken } = useTokenContext();
 
   const handleClick = async () => {
     try {

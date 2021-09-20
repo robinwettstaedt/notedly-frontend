@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext } from 'react';
+import { useEffect, useState, createContext, useContext } from 'react';
 
 type TokenContextType = {
   token: string;
@@ -23,7 +23,7 @@ export const TokenProvider = ({ children }: any) => {
   };
 
   const setLoading = (loading: boolean) => {
-    setLoadingState(!loading);
+    setLoadingState(loading);
   };
 
   // after a token is set, a 10 minute timout is initiated which will call the api to refresh the token
@@ -67,4 +67,8 @@ export const TokenProvider = ({ children }: any) => {
       {children}
     </TokenContext.Provider>
   );
+};
+
+export const useTokenContext = () => {
+  return useContext(TokenContext);
 };

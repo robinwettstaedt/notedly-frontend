@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { TokenContext } from '../../lib/contexts/TokenContext';
+import { useState } from 'react';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
 import toolbarDefaultsDark from '../../lib/utils/DraftEditorUtils/toolbarDefaultsDark';
 import SignOut from '../auth/SingOut';
+import { useTokenContext } from '../../lib/contexts/TokenContext';
 
 // nextjs SSR specific shenanigangs
 import dynamic from 'next/dynamic';
@@ -13,7 +13,7 @@ const Editor = dynamic<EditorProps>(
 );
 
 const TextEditorDark = () => {
-  const { token } = useContext(TokenContext);
+  const { token } = useTokenContext();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   //   save the current note to the database

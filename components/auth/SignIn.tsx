@@ -1,11 +1,10 @@
-import { Router } from 'next/dist/client/router';
-import { useContext, useState, FC } from 'react';
-import { TokenContext } from '../../lib/contexts/TokenContext';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useTokenContext } from '../../lib/contexts/TokenContext';
 
-const SignUp: FC = () => {
+const SignUp = () => {
   const router = useRouter();
-  const { setToken } = useContext(TokenContext);
+  const { setToken } = useTokenContext();
 
   const [email, setEmail] = useState<string>('');
   const [pw, setPw] = useState<string>('');

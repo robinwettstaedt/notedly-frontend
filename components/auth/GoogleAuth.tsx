@@ -1,7 +1,6 @@
-import { useContext } from 'react';
 import GoogleLogin from 'react-google-login';
-import { TokenContext } from '../../lib/contexts/TokenContext';
 import { useRouter } from 'next/router';
+import { useTokenContext } from '../../lib/contexts/TokenContext';
 
 // const googleClientID = process.env.GOOGLE_CLIENT_ID;
 
@@ -11,7 +10,7 @@ type GoogleID = {
 
 const GoogleAuth = ({ id }: GoogleID) => {
   const router = useRouter();
-  const { token, setToken } = useContext(TokenContext);
+  const { setToken } = useTokenContext();
 
   const handleLogin = async (googleData: any) => {
     try {

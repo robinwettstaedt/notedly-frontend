@@ -9,7 +9,7 @@ export type UserType = {
     theme: string;
     notifications: string;
   };
-  notebooks?: NotebookType[];
+  notebooks: NotebookType[];
   createdAt: string;
   updatedAt: string;
 };

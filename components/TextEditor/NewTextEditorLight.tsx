@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { TokenContext } from '../../lib/contexts/TokenContext';
+import { useState } from 'react';
+import { useTokenContext } from '../../lib/contexts/TokenContext';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
 import toolbarDefaultsLight from '../../lib/utils/DraftEditorUtils/toolbarDefaultsLight';
@@ -13,10 +13,8 @@ const Editor = dynamic<EditorProps>(
 );
 
 const TextEditorLight = () => {
-  const { token } = useContext(TokenContext);
-  const [editorState, setEditorState] = React.useState(
-    EditorState.createEmpty()
-  );
+  const { token } = useTokenContext();
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   // save the current note to the database
   // should be called timely for autosave

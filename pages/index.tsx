@@ -1,9 +1,9 @@
 import SignOut from '../components/auth/SingOut';
-import usePrivateRouterUser from '../lib/CustomHooks/usePrivateRouterUser';
+import usePrivateRouterUser from '../lib/CustomHooks/usePrivateRoute';
 import { GetServerSideProps } from 'next';
-import { useContext } from 'react';
-import { UserContext } from '../lib/contexts/UserContext';
-import { useEffect } from 'react';
+import { useUserContext } from '../lib/contexts/UserContext';
+
+import Link from 'next/link';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
@@ -11,18 +11,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-const Welcome = () => {
+const WelcomePage = () => {
   usePrivateRouterUser();
 
-  const { user } = useContext(UserContext);
+  const { user } = useUserContext();
 
   return (
     <>
-      <p>Welcome to notedly!</p>
-
+      <p>Welcome to notedly {user.firstName}!</p>
       <SignOut />
+      <Link href="/">
+        <a>Link to test page</a>
+      </Link>
     </>
   );
 };
 
-export default Welcome;
+export default WelcomePage;

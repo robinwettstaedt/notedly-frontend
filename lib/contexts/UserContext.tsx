@@ -4,38 +4,48 @@ import { UserType } from '../Types/userTypes';
 
 type UserContextType = {
   user: UserType;
-  setUser: (user: {}) => void;
+  setUser: (user: UserType) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
 };
 
-export const UserContext = createContext<UserContextType>({
-  user: {
-    _id: '',
-    email: '',
+const defaultUser: UserType = {
+  _id: '',
+  email: '',
+  firstName: '',
+  picture: '',
+  settings: {
+    theme: '',
+    notifications: '',
   },
+  notebooks: [],
+  createdAt: '',
+  updatedAt: '',
+};
+
+export const UserContext = createContext<UserContextType>({
+  user: defaultUser,
   setUser: function () {},
   loading: true,
   setLoading: function () {},
 });
 
 export const UserProvider = ({ children }: any) => {
-  const [user, setUserState] = useState({});
+  const [user, setUserState] = useState<UserType>(defaultUser);
   const [loading, setLoadingState] = useState(true);
   const { token } = useContext(TokenContext);
 
-  const setUser = (user: {}) => {
+  const setUser = (user: UserType) => {
     setUserState(user);
   };
 
   const setLoading = (loading: boolean) => {
-    setLoadingState(!loading);
+    setLoadingState(loading);
   };
 
-  // after a token is set, a 10 minute timout is initiated which will call the api to refresh the token
   useEffect(() => {
     const getUserInfo = async () => {
-      try {
+      if (token.length >= 20) {
         setLoading(true);
 
         const response = await fetch(
@@ -49,19 +59,18 @@ export const UserProvider = ({ children }: any) => {
         );
 
         const data = await response.json();
+        const userData: UserType = data.user;
 
         if (data) {
-          setUser(data);
+          console.log(userData);
+          setUser(userData);
+
           setLoading(false);
         }
-      } catch (error) {
-        console.error(error);
       }
     };
 
-    if (token.length >= 20) {
-      getUserInfo();
-    }
+    getUserInfo();
   }, [token]);
 
   return (
@@ -76,4 +85,8 @@ export const UserProvider = ({ children }: any) => {
       {children}
     </UserContext.Provider>
   );
+};
+
+export const useUserContext = () => {
+  return useContext(UserContext);
 };
