@@ -1,19 +1,19 @@
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { TokenContext } from '../../lib/contexts/TokenContext';
+import { UserContext } from '../contexts/UserContext';
 
 const usePrivateRoute = () => {
-  const { token } = useContext(TokenContext);
+  const { user } = useContext(UserContext);
   const router = useRouter();
 
   useEffect(() => {
     const handle = async () => {
-      if (!token) {
+      if (!user) {
         await router.replace('/signin');
       }
     };
     handle();
-  }, [token, router]);
+  }, [user, router]);
 };
 
 export default usePrivateRoute;

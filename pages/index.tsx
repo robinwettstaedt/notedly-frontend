@@ -1,8 +1,9 @@
 import SignOut from '../components/auth/SingOut';
-import usePrivateRoute from '../components/auth/usePrivateRoute';
+import usePrivateRouterUser from '../lib/CustomHooks/usePrivateRouterUser';
 import { GetServerSideProps } from 'next';
 import { useContext } from 'react';
 import { UserContext } from '../lib/contexts/UserContext';
+import { useEffect } from 'react';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
@@ -11,7 +12,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const Welcome = () => {
-  usePrivateRoute();
+  usePrivateRouterUser();
 
   const { user } = useContext(UserContext);
 

@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { TokenContext } from '../../lib/contexts/TokenContext';
+import { useRouter } from 'next/router';
 
 const SignUp = () => {
+  const router = useRouter();
   const { token, setToken } = useContext(TokenContext);
 
   const [name, setName] = useState<string>('');
@@ -35,6 +37,7 @@ const SignUp = () => {
       const data = await response.json();
 
       setToken(`Bearer ${data.accessToken}`);
+      router.push('/');
     } catch (error) {
       console.error('error:', error);
     }

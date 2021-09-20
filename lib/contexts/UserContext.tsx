@@ -1,16 +1,19 @@
-import { allowedStatusCodes } from 'next/dist/lib/load-custom-routes';
 import { useContext, useEffect, useState, createContext } from 'react';
 import { TokenContext } from './TokenContext';
+import { UserType } from '../Types/userTypes';
 
 type UserContextType = {
-  user: {};
+  user: UserType;
   setUser: (user: {}) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
 };
 
 export const UserContext = createContext<UserContextType>({
-  user: {},
+  user: {
+    _id: '',
+    email: '',
+  },
   setUser: function () {},
   loading: true,
   setLoading: function () {},
@@ -45,10 +48,10 @@ export const UserProvider = ({ children }: any) => {
           }
         );
 
-        const user = await response.json();
+        const data = await response.json();
 
-        if (user) {
-          setUser({ user: user });
+        if (data) {
+          setUser(data);
           setLoading(false);
         }
       } catch (error) {
