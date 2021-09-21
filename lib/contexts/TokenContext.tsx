@@ -41,6 +41,7 @@ export const TokenProvider = ({ children }: any) => {
       const data = await response.json();
 
       if (data.accessToken) {
+        console.log(data.accessToken);
         setToken(`Bearer ${data.accessToken}`);
         setLoading(false);
       }

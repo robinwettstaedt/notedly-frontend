@@ -12,6 +12,7 @@ const Editor = dynamic<EditorProps>(
   { ssr: false }
 );
 
+// outdated, has to be updated with everything thats new in the DARK TextEditor Component ############################################################################
 const TextEditorLight = () => {
   const { token } = useTokenContext();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());

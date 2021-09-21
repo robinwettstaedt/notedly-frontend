@@ -1,9 +1,22 @@
 import { useState } from 'react';
-import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
+import { useTokenContext } from '../../lib/contexts/TokenContext';
+
+import {
+  EditorState,
+  convertFromRaw,
+  convertToRaw,
+  RawDraftContentState,
+} from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
+
 import toolbarDefaultsDark from '../../lib/utils/DraftEditorUtils/toolbarDefaultsDark';
 import SignOut from '../auth/SingOut';
-import { useTokenContext } from '../../lib/contexts/TokenContext';
+
+import {
+  NoteType,
+  CreateNoteType,
+  UpdateNoteType,
+} from '../../lib/Types/noteTypes';
 
 // nextjs SSR specific shenanigangs
 import dynamic from 'next/dynamic';
@@ -25,14 +38,51 @@ const TextEditorDark = () => {
         convertToRaw(editorState.getCurrentContent())
       );
 
+      const createNoteData: CreateNoteType = {
+        title: 'Hi',
+        content: rawEditorContent,
+        notebook: '614a01c1cbdcde7f14e6ddec',
+        emoji: {},
+      };
+
       await fetch(`${process.env.API_SERVER_URL}/api/v1/note`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
         },
-        body: JSON.stringify({ content: rawEditorContent }),
+        body: JSON.stringify(createNoteData),
       });
+    } catch (error) {
+      console.log('error:', error);
+    }
+  };
+
+  // updating a note
+  const handlePut = async () => {
+    try {
+      const rawEditorContent = JSON.stringify(
+        convertToRaw(editorState.getCurrentContent())
+      );
+
+      const updateNoteData: UpdateNoteType = {
+        // title: 'Hi',
+        content: rawEditorContent,
+        // notebook: '614a01c1cbdcde7f14e6ddec',
+        // emoji: {},
+      };
+
+      await fetch(
+        `${process.env.API_SERVER_URL}/api/v1/note/614a0a2acbdcde7f14e6de05`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+          body: JSON.stringify(updateNoteData),
+        }
+      );
     } catch (error) {
       console.log('error:', error);
     }
@@ -42,7 +92,7 @@ const TextEditorDark = () => {
   const handleGet = async () => {
     try {
       const response = await fetch(
-        'http://localhost:5000/api/v1/note/6144848296e3cb80f085020a',
+        'http://localhost:5000/api/v1/note/614a0a2acbdcde7f14e6de05',
         {
           method: 'GET',
           headers: {
@@ -55,8 +105,12 @@ const TextEditorDark = () => {
       const json = await response.json();
       const data = await JSON.parse(json.data.content);
 
+      const note: NoteType = data;
+
       // set the content of the editor window to the content received by the api
-      setEditorState(EditorState.createWithContent(convertFromRaw(data)));
+      setEditorState(
+        EditorState.createWithContent(convertFromRaw(note.content))
+      );
     } catch (e) {
       console.error(e);
     }
@@ -73,7 +127,8 @@ const TextEditorDark = () => {
         toolbar={toolbarDefaultsDark}
       />
       <button onClick={handleGet}>Get</button>
-      <button onClick={handlePost}>Post</button>
+      <button onClick={handlePost}>CREATE</button>
+      <button onClick={handlePut}>UPDATE</button>
       <SignOut />
     </>
   );

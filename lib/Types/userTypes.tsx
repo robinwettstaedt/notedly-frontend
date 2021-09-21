@@ -1,5 +1,3 @@
-import { NotebookType } from './notebookTypes';
-
 export type UserType = {
   _id: string;
   email: string;
@@ -9,7 +7,13 @@ export type UserType = {
     theme: string;
     notifications: string;
   };
-  notebooks: NotebookType[];
+  notebooks: UserNotebookType[];
   createdAt: string;
   updatedAt: string;
+};
+
+// have a look at how to structure them as they are filled by the APIs .populate mongoose method
+export type UserNotebookType = {
+  _id: string;
+  //rest optional, maybe title etc
 };

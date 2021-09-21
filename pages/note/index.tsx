@@ -5,7 +5,7 @@ const index = () => {
   return (
     <div>
       <NewTextEditorDark />
-      <NewTextEditorLight />
+      {/* <NewTextEditorLight /> */}
     </div>
   );
 };
