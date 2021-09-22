@@ -12,6 +12,7 @@ type UserContextType = {
 const defaultUser: UserType = {
   _id: '',
   email: '',
+  username: '',
   firstName: '',
   picture: '',
   settings: {

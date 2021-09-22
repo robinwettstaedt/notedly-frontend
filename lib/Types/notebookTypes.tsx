@@ -1,3 +1,4 @@
+import { EmojiData } from 'emoji-mart';
 import { NoteType } from './noteTypes';
 
 export type NotebookType = {
@@ -24,7 +25,11 @@ export type NotebookAccessType = {
 // have a look at how to structure them as they are filled by the APIs .populate mongoose method
 export type NotebookNoteType = {
   _id: string;
-  //rest optional, maybe title etc
+  title: string;
+  emoji: EmojiData | {};
+  deleted: boolean;
+  deletedAt?: string;
+  visible: boolean;
 };
 
 export type CreateNotebookType = {
@@ -41,7 +46,7 @@ export type UpdateNotebookType = {
   visible?: boolean;
 };
 
-enum NotebookColor {
+export enum NotebookColor {
   RED = '#ffffff',
   ORANGE = '#ffffff',
   YELLOW = '#ffffff',
