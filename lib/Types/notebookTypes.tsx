@@ -17,9 +17,9 @@ export type NotebookType = {
 
 export type NotebookAccessType = {
   _id: string;
-  email?: string;
-  firstName?: string;
-  picture?: string;
+  email: string;
+  firstName: string;
+  picture: string;
 };
 
 // have a look at how to structure them as they are filled by the APIs .populate mongoose method

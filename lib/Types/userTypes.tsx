@@ -9,6 +9,7 @@ export type UserType = {
   settings: {
     theme: Theme;
     notifications: Notifications;
+    invites: Boolean;
   };
   notebooks: UserNotebookType[];
   createdAt: string;
@@ -24,6 +25,7 @@ export type UpdateUserType = {
   settings?: {
     theme: Theme;
     notifications: Notifications;
+    invites: Boolean;
   };
   notebooks?: UserNotebookType[];
 };
@@ -33,6 +35,7 @@ export type UserNotebookType = {
   _id: string;
   title: string;
   color: NotebookColor;
+  notes: String[];
   deleted: boolean;
   deletedAt?: string;
   visible: boolean;

@@ -20,9 +20,9 @@ export type NoteType = {
 
 export type NoteAccessType = {
   _id: string;
-  email?: string;
-  firstName?: string;
-  picture?: string;
+  email: string;
+  firstName: string;
+  picture: string;
 };
 
 export type CreateNoteType = {
