@@ -43,3 +43,26 @@ export type UpdateNoteType = {
   locked?: boolean;
   favourited?: boolean;
 };
+
+export type NoteInviteType = {
+  _id: string;
+  notebook: string;
+  inviter: {
+    _id: string;
+    email: string;
+    firstName: string;
+    picture: string;
+  };
+  receiver: {
+    _id: string;
+    email: string;
+    firstName: string;
+    picture: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateNoteInviteType = {
+  receiver: string;
+};

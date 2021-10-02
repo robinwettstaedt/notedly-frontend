@@ -63,3 +63,26 @@ export enum NotebookColor {
   GRAY = '#ffffff',
   PEACH = '#ffffff',
 }
+
+export type NotebookInviteType = {
+  _id: string;
+  notebook: string;
+  inviter: {
+    _id: string;
+    email: string;
+    firstName: string;
+    picture: string;
+  };
+  receiver: {
+    _id: string;
+    email: string;
+    firstName: string;
+    picture: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateNotebookInviteType = {
+  receiver: string;
+};
