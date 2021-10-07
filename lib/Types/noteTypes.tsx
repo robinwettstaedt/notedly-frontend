@@ -46,7 +46,7 @@ export type UpdateNoteType = {
 
 export type NoteInviteType = {
   _id: string;
-  notebook: string;
+  note: string;
   inviter: {
     _id: string;
     email: string;
