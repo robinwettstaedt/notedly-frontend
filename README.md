@@ -13,7 +13,3 @@ The idea came from existing apps, such as [notion](https://notion.so/).
 - [styled-components](https://styled-components.com/) for styling and theming
 - [framer-motion](https://www.framer.com/motion/) for reliable animations in React
 - [FontAwesome](https://fontawesome.com/) provides the icons used
-
-- [Node.js](https://nodejs.org/en/) as the Javascript Runtime
-- [express.js](https://expressjs.com/) for the REST API routes on the backend
-- [MongoDB](https://www.mongodb.com/) as the Database
