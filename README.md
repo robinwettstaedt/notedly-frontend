@@ -1,4 +1,4 @@
-# notedly's (name in progress) backend api
+# notedly's (name in progress) frontend
 
 This is the backend to a note taking Progressive Web App (notedly) which I started in order to get to know Node.js, express.js, MongoDB and Next.js with Typescript better.
 
