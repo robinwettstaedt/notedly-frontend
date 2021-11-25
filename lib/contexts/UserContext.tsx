@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState, createContext } from 'react';
 import { TokenContext } from './TokenContext';
 import { UserType } from '../Types/userTypes';
+import { Theme } from '../Types/userTypes';
 
 type UserContextType = {
   user: UserType;
@@ -16,8 +17,9 @@ const defaultUser: UserType = {
   firstName: '',
   picture: '',
   settings: {
-    theme: '',
-    notifications: '',
+    theme: 'DARK',
+    notifications: 'ALL',
+    invites: true,
   },
   notebooks: [],
   createdAt: '',

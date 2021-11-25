@@ -41,14 +41,6 @@ export type UserNotebookType = {
   visible: boolean;
 };
 
-enum Theme {
-  LIGHT = 'LIGHT',
-  DARK = 'DARK',
-}
+export type Theme = 'LIGHT' | 'DARK';
 
-enum Notifications {
-  ALL = 'ALL',
-  TODOS = 'TODOS',
-  INVITES = 'INVITES',
-  NONE = 'NONE',
-}
+export type Notifications = 'ALL' | 'TODOS' | 'INVITES' | 'NONE';

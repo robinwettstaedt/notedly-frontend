@@ -14,7 +14,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const SignInPage = ({ GOOGLE_CLIENT_ID }: any) => {
   return (
     <>
-      <GoogleAuth id={GOOGLE_CLIENT_ID} />
+      {/* <GoogleAuth id={GOOGLE_CLIENT_ID} /> */}
       <SignIn />
     </>
   );
