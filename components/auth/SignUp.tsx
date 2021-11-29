@@ -32,17 +32,20 @@ const SignUp = () => {
     try {
       e.preventDefault();
 
-      const response = await fetch(`${process.env.API_SERVER_URL}/signup`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: username,
-          firstName: name,
-          email: email,
-          password: pw,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.API_SERVER_URL}/auth/signup`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: username,
+            firstName: name,
+            email: email,
+            password: pw,
+          }),
+        }
+      );
 
       const data = await response.json();
 

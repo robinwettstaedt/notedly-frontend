@@ -23,12 +23,15 @@ const SignUp = () => {
       e.preventDefault();
 
       console.log('Sending request to: ', process.env.API_SERVER_URL);
-      const response = await fetch(`${process.env.API_SERVER_URL}/signin`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, password: pw }),
-        credentials: 'include',
-      });
+      const response = await fetch(
+        `${process.env.API_SERVER_URL}/auth/signin`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, password: pw }),
+          credentials: 'include',
+        }
+      );
 
       const data = await response.json();
 

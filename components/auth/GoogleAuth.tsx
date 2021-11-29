@@ -15,7 +15,7 @@ const GoogleAuth = ({ id }: GoogleID) => {
   const handleLogin = async (googleData: any) => {
     try {
       const response = await fetch(
-        `${process.env.API_SERVER_URL}/signinwithgoogle`,
+        `${process.env.API_SERVER_URL}/auth/signinwithgoogle`,
         {
           method: 'POST',
           credentials: 'include',
