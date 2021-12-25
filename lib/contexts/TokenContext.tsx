@@ -1,4 +1,5 @@
 import { useEffect, useState, createContext, useContext } from 'react';
+import { authEndpoints } from '../constants/endpoints';
 
 type TokenContextType = {
   token: string;
@@ -30,13 +31,10 @@ export const TokenProvider = ({ children }: any) => {
   useEffect(() => {
     const refreshToken = async () => {
       setLoading(true);
-      const response = await fetch(
-        `${process.env.API_SERVER_URL}/refresh_token`,
-        {
-          method: 'POST',
-          credentials: 'include',
-        }
-      );
+      const response = await fetch(authEndpoints.refreshAccess, {
+        method: 'POST',
+        credentials: 'include',
+      });
 
       const data = await response.json();
 

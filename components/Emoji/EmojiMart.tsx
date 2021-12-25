@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      <Picker emoji="" color="green" onSelect={handleSelect} />
+      <Picker emoji=":thumbsup:" color="blue" onSelect={handleSelect} />
       {emoji && <Emoji emoji={emoji} size={24} />}
     </div>
   );

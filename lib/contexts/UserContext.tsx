@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState, createContext } from 'react';
-import { TokenContext } from './TokenContext';
+import { TokenContext, useTokenContext } from './TokenContext';
 import { UserType } from '../types/userTypes';
 import { Theme } from '../types/userTypes';
+import { authEndpoints, userEndpoints } from '../constants/endpoints';
 
 type UserContextType = {
   user: UserType;
@@ -36,7 +37,7 @@ export const UserContext = createContext<UserContextType>({
 export const UserProvider = ({ children }: any) => {
   const [user, setUserState] = useState<UserType>(defaultUser);
   const [loading, setLoadingState] = useState(true);
-  const { token } = useContext(TokenContext);
+  const { token } = useTokenContext();
 
   const setUser = (user: UserType) => {
     setUserState(user);
@@ -48,28 +49,28 @@ export const UserProvider = ({ children }: any) => {
 
   useEffect(() => {
     const getUserInfo = async () => {
-      if (token.length >= 20) {
-        setLoading(true);
+      try {
+        if (token.length > 20) {
+          setLoading(true);
 
-        const response = await fetch(
-          `${process.env.API_SERVER_URL}/api/v1/user`,
-          {
+          const response = await fetch(userEndpoints.getOrUpdateOrDelete, {
             method: 'GET',
             headers: {
               Authorization: token,
             },
+          });
+
+          const data = await response.json();
+          const userData: UserType = data.user;
+
+          if (data) {
+            console.log(userData);
+            setUser(userData);
           }
-        );
-
-        const data = await response.json();
-        const userData: UserType = data.user;
-
-        if (data) {
-          console.log(userData);
-          setUser(userData);
-
           setLoading(false);
         }
+      } catch (error) {
+        console.log(error);
       }
     };
 

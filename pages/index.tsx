@@ -15,8 +15,8 @@ import usePrivateRoute from '../lib/hooks/usePrivateRoute';
 const WelcomePage = () => {
   usePrivateRoute();
 
-  const { user } = useUserContext();
   const { token } = useTokenContext();
+  const { user } = useUserContext();
 
   return (
     <>
@@ -26,7 +26,7 @@ const WelcomePage = () => {
       <Link href="/note">
         <a>Link to the Text Editors</a>
       </Link>
-      <EmojiMart />
+      {/* <EmojiMart /> */}
     </>
   );
 };

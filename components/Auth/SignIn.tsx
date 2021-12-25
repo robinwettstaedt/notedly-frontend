@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTokenContext } from '../../lib/contexts/TokenContext';
+import { authEndpoints } from '../../lib/constants/endpoints';
 
 const SignUp = () => {
   const router = useRouter();
@@ -22,16 +23,12 @@ const SignUp = () => {
     try {
       e.preventDefault();
 
-      console.log('Sending request to: ', process.env.API_SERVER_URL);
-      const response = await fetch(
-        `${process.env.API_SERVER_URL}/auth/signin`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, password: pw }),
-          credentials: 'include',
-        }
-      );
+      const response = await fetch(authEndpoints.signIn, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, password: pw }),
+        credentials: 'include',
+      });
 
       const data = await response.json();
 

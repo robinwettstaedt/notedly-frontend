@@ -4,9 +4,14 @@ import { useTokenContext } from '../contexts/TokenContext';
 import { authEndpoints } from '../constants/endpoints';
 
 /*
-multiple flows:
-user  signs in
-is redirected to the home page
+if ( token under 20 chars): 
+	try to fetch new token via cookie 
+	set token to new token 
+	if (token still under 20 chars):
+		router to signin
+	else { pass through the component }
+else { pass thorugh the component }
+
 
 */
 
@@ -32,9 +37,7 @@ const usePrivateRoute = () => {
           if (accessToken) {
             setToken(`Bearer ${accessToken}`);
             setLoading(false);
-          }
-
-          if (token) {
+          } else {
             await router.replace('/auth/sign-in');
           }
         }
@@ -44,7 +47,7 @@ const usePrivateRoute = () => {
     };
 
     handle();
-  }, [token, router]);
+  }, [token, setToken, router, setLoading]);
 };
 
 export default usePrivateRoute;
