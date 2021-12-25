@@ -1,6 +1,6 @@
 import React from 'react';
-import GoogleAuth from '../../components/auth/GoogleAuth';
-import SignUp from '../../components/auth/SignUp';
+import GoogleAuth from '../../components/Auth/GoogleAuth';
+import SignUp from '../../components/Auth/SignUp';
 import { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

@@ -1,20 +1,19 @@
-import SignOut from '../components/auth/SingOut';
-import usePrivateRouterUser from '../lib/CustomHooks/usePrivateRoute';
-import { GetServerSideProps } from 'next';
-import { useUserContext } from '../lib/contexts/UserContext';
-import EmojiMart from '../components/emoji/EmojiMart';
-
-import Link from 'next/link';
 import { useTokenContext } from '../lib/contexts/TokenContext';
+import { useUserContext } from '../lib/contexts/UserContext';
+import Link from 'next/link';
+import SignOut from '../components/Auth/SingOut';
+import EmojiMart from '../components/Emoji/EmojiMart';
+import usePrivateRoute from '../lib/hooks/usePrivateRoute';
+// import { GetServerSideProps } from 'next';
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  return {
-    props: {},
-  };
-};
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   return {
+//     props: {},
+//   };
+// };
 
 const WelcomePage = () => {
-  usePrivateRouterUser();
+  usePrivateRoute();
 
   const { user } = useUserContext();
   const { token } = useTokenContext();

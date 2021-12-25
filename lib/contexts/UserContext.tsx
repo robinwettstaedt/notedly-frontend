@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, createContext } from 'react';
 import { TokenContext } from './TokenContext';
-import { UserType } from '../Types/userTypes';
-import { Theme } from '../Types/userTypes';
+import { UserType } from '../types/userTypes';
+import { Theme } from '../types/userTypes';
 
 type UserContextType = {
   user: UserType;

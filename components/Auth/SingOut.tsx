@@ -14,7 +14,7 @@ const SignOut = () => {
 
       setToken(``);
 
-      router.push('/signin');
+      router.push('/auth/sign-in');
     } catch (error) {
       console.error('error:', error);
     }

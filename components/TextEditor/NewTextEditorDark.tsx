@@ -9,14 +9,14 @@ import {
 } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
 
-import toolbarDefaultsDark from '../../lib/utils/DraftEditorUtils/toolbarDefaultsDark';
-import SignOut from '../auth/SingOut';
+import toolbarDefaultsDark from '../../lib/constants/DraftEditorConstants/toolbarDefaultsDark';
+import SignOut from '../Auth/SingOut';
 
 import {
   NoteType,
   CreateNoteType,
   UpdateNoteType,
-} from '../../lib/Types/noteTypes';
+} from '../../lib/types/noteTypes';
 
 // nextjs SSR specific shenanigangs
 import dynamic from 'next/dynamic';
@@ -41,7 +41,7 @@ const TextEditorDark = () => {
       const createNoteData: CreateNoteType = {
         title: 'Hi',
         content: rawEditorContent,
-        notebook: '614a01c1cbdcde7f14e6ddec',
+        notebook: '61b8f5441d88c8864c105393',
         emoji: {},
       };
 
@@ -53,6 +53,8 @@ const TextEditorDark = () => {
         },
         body: JSON.stringify(createNoteData),
       });
+
+      console.log(JSON.stringify(createNoteData));
     } catch (error) {
       console.log('error:', error);
     }
@@ -73,7 +75,7 @@ const TextEditorDark = () => {
       };
 
       await fetch(
-        `${process.env.API_SERVER_URL}/api/v1/note/614a0a2acbdcde7f14e6de05`,
+        `${process.env.API_SERVER_URL}/api/v1/note/61b8f5441d88c8864c105393`,
         {
           method: 'PUT',
           headers: {
@@ -92,7 +94,7 @@ const TextEditorDark = () => {
   const handleGet = async () => {
     try {
       const response = await fetch(
-        'http://localhost:5000/api/v1/note/614a0a2acbdcde7f14e6de05',
+        'http://localhost:5000/api/v1/note/61b8f5441d88c8864c105393',
         {
           method: 'GET',
           headers: {
@@ -104,6 +106,8 @@ const TextEditorDark = () => {
 
       const json = await response.json();
       const data = await JSON.parse(json.data.content);
+
+      console.log(data);
 
       const note: NoteType = data;
 

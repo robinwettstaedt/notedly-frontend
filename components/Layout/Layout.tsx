@@ -13,7 +13,10 @@ const Layout: React.FC<ParentComponentProps> = ({ children }) => {
   const router = useRouter();
 
   // render the Nav conditionally depending on if the route is singin/ signup or not
-  if (router.pathname === '/signin' || router.pathname === '/signup') {
+  if (
+    router.pathname === '/auth/sign-in' ||
+    router.pathname === '/auth/sign-up'
+  ) {
     return <>{children}</>;
   }
 

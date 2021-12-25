@@ -1,7 +1,10 @@
 import NewTextEditorLight from '../../components/TextEditor/NewTextEditorLight';
 import NewTextEditorDark from '../../components/TextEditor/NewTextEditorDark';
+import usePrivateRoute from '../../lib/hooks/usePrivateRoute';
 
-const index = () => {
+const Note = () => {
+  usePrivateRoute();
+
   return (
     <div>
       <NewTextEditorDark />
@@ -10,4 +13,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Note;
