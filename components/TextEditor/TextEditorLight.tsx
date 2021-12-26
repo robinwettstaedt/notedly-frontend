@@ -3,7 +3,7 @@ import { useTokenContext } from '../../lib/contexts/TokenContext';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg';
 import toolbarDefaultsLight from '../../lib/constants/DraftEditorConstants/toolbarDefaultsLight';
-import SignOut from '../Auth/SingOut';
+import SignOut from '../Auth/SignOut';
 
 // nextjs SSR specific shenanigangs
 import dynamic from 'next/dynamic';

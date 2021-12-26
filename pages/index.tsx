@@ -1,7 +1,7 @@
 import { useTokenContext } from '../lib/contexts/TokenContext';
 import { useUserContext } from '../lib/contexts/UserContext';
 import Link from 'next/link';
-import SignOut from '../components/Auth/SingOut';
+import SignOut from '../components/Auth/SignOut';
 import EmojiMart from '../components/Emoji/EmojiMart';
 import usePrivateRoute from '../lib/hooks/usePrivateRoute';
 // import { GetServerSideProps } from 'next';
@@ -20,7 +20,6 @@ const WelcomePage = () => {
 
   return (
     <>
-      <p>{token}</p>
       <p>Welcome to notedly {user.firstName}!</p>
       <SignOut />
       <Link href="/note">

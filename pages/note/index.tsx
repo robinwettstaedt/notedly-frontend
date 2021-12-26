@@ -1,5 +1,5 @@
-import NewTextEditorLight from '../../components/TextEditor/NewTextEditorLight';
-import NewTextEditorDark from '../../components/TextEditor/NewTextEditorDark';
+import NewTextEditorLight from '../../components/TextEditor/TextEditorLight';
+import NewTextEditorDark from '../../components/TextEditor/TextEditorDark';
 import usePrivateRoute from '../../lib/hooks/usePrivateRoute';
 
 const Note = () => {

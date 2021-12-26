@@ -10,7 +10,7 @@ import {
 import { EditorProps } from 'react-draft-wysiwyg';
 
 import toolbarDefaultsDark from '../../lib/constants/DraftEditorConstants/toolbarDefaultsDark';
-import SignOut from '../Auth/SingOut';
+import SignOut from '../Auth/SignOut';
 
 import {
   NoteType,
@@ -25,7 +25,7 @@ const Editor = dynamic<EditorProps>(
   { ssr: false }
 );
 
-const TextEditorDark = () => {
+const TextEditorDark = (noteID: any) => {
   const { token } = useTokenContext();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
@@ -74,17 +74,14 @@ const TextEditorDark = () => {
         // emoji: {},
       };
 
-      await fetch(
-        `${process.env.API_SERVER_URL}/api/v1/note/61b8f5441d88c8864c105393`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token,
-          },
-          body: JSON.stringify(updateNoteData),
-        }
-      );
+      await fetch(`${process.env.API_SERVER_URL}/api/v1/note/${noteID}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+        body: JSON.stringify(updateNoteData),
+      });
     } catch (error) {
       console.log('error:', error);
     }
@@ -94,7 +91,7 @@ const TextEditorDark = () => {
   const handleGet = async () => {
     try {
       const response = await fetch(
-        'http://localhost:5000/api/v1/note/61b8f5441d88c8864c105393',
+        `http://localhost:5000/api/v1/note/${noteID}`,
         {
           method: 'GET',
           headers: {
