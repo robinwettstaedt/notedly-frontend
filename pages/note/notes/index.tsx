@@ -1,5 +1,5 @@
-import TextEditorDark from '../../components/TextEditor/TextEditorDark';
-import usePrivateRoute from '../../lib/hooks/usePrivateRoute';
+import TextEditorDark from '../../../components/TextEditor/TextEditorDark';
+import usePrivateRoute from '../../../lib/hooks/usePrivateRoute';
 
 const Note = () => {
   usePrivateRoute();

@@ -19,6 +19,6 @@ const Backdrop = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 99;
+  background: rgba(158, 158, 158, 0.082);
+  z-index: 199;
 `;

@@ -50,9 +50,9 @@ const StyledLeftNavbar = styled.div`
 
 const LeftNavigation = styled.div`
   height: 100vh;
-  background: grey;
+  background: #2b976e;
   width: 80vw;
-  z-index: 100;
+  z-index: 200;
 `;
 
 const StyledUl = styled.ul`

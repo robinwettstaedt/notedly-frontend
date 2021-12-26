@@ -1,5 +1,4 @@
-import NewTextEditorLight from '../../components/TextEditor/TextEditorLight';
-import NewTextEditorDark from '../../components/TextEditor/TextEditorDark';
+import TextEditorDark from '../../components/TextEditor/TextEditorDark';
 import usePrivateRoute from '../../lib/hooks/usePrivateRoute';
 
 const Note = () => {
@@ -7,8 +6,7 @@ const Note = () => {
 
   return (
     <div>
-      <NewTextEditorDark />
-      {/* <NewTextEditorLight /> */}
+      <TextEditorDark noteID="hi" />
     </div>
   );
 };
