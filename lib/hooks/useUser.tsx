@@ -1,6 +1,7 @@
 import { userEndpoints } from './../constants/endpoints';
 import useSWR from 'swr';
 import axios from 'axios';
+import { UserType } from '../types/userTypes';
 
 const useUser = () => {
   const fetcher = async (url: string) =>
@@ -8,15 +9,22 @@ const useUser = () => {
 
   const { data, mutate, error } = useSWR(
     userEndpoints.getOrUpdateOrDelete,
-    fetcher
+    fetcher,
+    { errorRetryInterval: 100 }
   );
+
+  let user: UserType | null = null;
+
+  if (data) {
+    user = data.user;
+  }
 
   const loading = !data && !error;
 
   return {
     loading,
     error,
-    user: data ? data.user : {},
+    user,
     mutate,
   };
 };
