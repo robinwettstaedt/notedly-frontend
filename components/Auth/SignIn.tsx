@@ -30,8 +30,8 @@ const SignUp = () => {
         password: pw,
       });
 
-      console.log('signin token: ', response.data.accessToken);
-      mutate(`Bearer ${response.data.accessToken}`);
+      console.log('signin token: ', response.data);
+      mutate(response.data);
 
       router.push('/');
     } catch (error) {

@@ -1,10 +1,8 @@
 import { useRouter } from 'next/router';
+import { withAuth } from '../../components/Auth/withAuth';
 import TextEditorDark from '../../components/TextEditor/TextEditorDark';
-import usePrivateRoute from '../../lib/hooks/usePrivateRoute';
 
 const Note = () => {
-  usePrivateRoute();
-
   const router = useRouter();
   const { pid } = router.query;
 
@@ -15,4 +13,4 @@ const Note = () => {
   );
 };
 
-export default Note;
+export default withAuth(Note);

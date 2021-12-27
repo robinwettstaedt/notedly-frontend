@@ -16,7 +16,7 @@ const LeftNav = ({ leftNavOpen, setLeftNavOpen }: LeftNavProps) => {
   //   const [notebooks, setNotebooks] = useState<NotebookType[] | undefined>([]);
   const { notebooks } = useNotebookContext();
 
-  console.log('notebooks: ', notebooks);
+  //   console.log('notebooks: ', notebooks);
 
   if (leftNavOpen) {
     return (

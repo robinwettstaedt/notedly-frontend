@@ -16,16 +16,12 @@ const useAuth = () => {
 
   let token: string = '';
 
-  if (data != undefined) {
+  if (data) {
     console.log('useAuth data: ', data);
-    if (data.toString().startsWith('Bearer ')) {
-      axios.defaults.headers.common['Authorization'] = data;
-      token = data;
-    } else {
-      axios.defaults.headers.common['Authorization'] = data.accessToken;
-      token = data.accessToken;
-    }
+    token = `Bearer ${data.accessToken}`;
   }
+
+  axios.defaults.headers.common['Authorization'] = token;
 
   return {
     loading,

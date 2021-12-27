@@ -18,7 +18,7 @@ const WelcomePage: React.FC = () => {
 
   return (
     <>
-      {user && <p>Welcome to notedly {user.firstName}!</p>}
+      {user ? <p>Welcome to notedly {user.firstName}!</p> : <p>loading...</p>}
       <SignOut />
       <Link href="/note">
         <a>Link to the Text Editors</a>

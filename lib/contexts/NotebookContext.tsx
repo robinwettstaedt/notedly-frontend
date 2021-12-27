@@ -33,27 +33,27 @@ export const NotebookProvider = ({ children }: any) => {
     setLoadingState(loading);
   };
 
-  useEffect(() => {
-    const getNotebooks = async () => {
-      try {
-        const response = await fetch(notebookEndpoints.createOrGetMany, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token,
-          },
-        });
+  //   useEffect(() => {
+  //     const getNotebooks = async () => {
+  //       try {
+  //         const response = await fetch(notebookEndpoints.createOrGetMany, {
+  //           method: 'GET',
+  //           headers: {
+  //             'Content-Type': 'application/json',
+  //             Authorization: token,
+  //           },
+  //         });
 
-        const data: NotebookType[] = await response.json();
+  //         const data: NotebookType[] = await response.json();
 
-        setNotebooks(data);
-      } catch (error) {
-        console.log('error:', error);
-      }
-    };
+  //         setNotebooks(data);
+  //       } catch (error) {
+  //         console.log('error:', error);
+  //       }
+  //     };
 
-    getNotebooks();
-  }, [token]);
+  //     getNotebooks();
+  //   }, [token]);
 
   return (
     <NotebookContext.Provider
