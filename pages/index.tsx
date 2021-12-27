@@ -1,26 +1,24 @@
+import React, { useEffect, useState } from 'react';
 import { useTokenContext } from '../lib/contexts/TokenContext';
-import { useUserContext } from '../lib/contexts/UserContext';
+import { defaultUser, useUserContext } from '../lib/contexts/UserContext';
 import Link from 'next/link';
 import SignOut from '../components/Auth/SignOut';
 import EmojiMart from '../components/Emoji/EmojiMart';
 import usePrivateRoute from '../lib/hooks/usePrivateRoute';
-// import { GetServerSideProps } from 'next';
+import { authEndpoints, userEndpoints } from '../lib/constants/endpoints';
+import useUser from '../lib/hooks/useUser';
+import useAuth from '../lib/hooks/useAuth';
+import axios from 'axios';
+import { UserType } from '../lib/types/userTypes';
+import { withAuth } from '../components/Auth/withAuth';
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   return {
-//     props: {},
-//   };
-// };
-
-const WelcomePage = () => {
-  usePrivateRoute();
-
-  const { token } = useTokenContext();
-  const { user } = useUserContext();
+const WelcomePage: React.FC = () => {
+  //   usePrivateRoute();
+  const { user } = useUser();
 
   return (
     <>
-      <p>Welcome to notedly {user.firstName}!</p>
+      {user && <p>Welcome to notedly {user.firstName}!</p>}
       <SignOut />
       <Link href="/note">
         <a>Link to the Text Editors</a>
@@ -30,4 +28,4 @@ const WelcomePage = () => {
   );
 };
 
-export default WelcomePage;
+export default withAuth(WelcomePage);

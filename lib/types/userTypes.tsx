@@ -1,5 +1,3 @@
-import { NotebookColor } from './notebookTypes';
-
 export type UserType = {
   _id: string;
   email: string;
@@ -11,7 +9,6 @@ export type UserType = {
     notifications: Notifications;
     invites: Boolean;
   };
-  notebooks: UserNotebookType[];
   createdAt: string;
   updatedAt: string;
 };
@@ -27,18 +24,6 @@ export type UpdateUserType = {
     notifications: Notifications;
     invites: Boolean;
   };
-  notebooks?: UserNotebookType[];
-};
-
-// filled by the APIs .populate mongoose method
-export type UserNotebookType = {
-  _id: string;
-  title: string;
-  color: NotebookColor;
-  notes: String[];
-  deleted: boolean;
-  deletedAt?: string;
-  visible: boolean;
 };
 
 export type Theme = 'LIGHT' | 'DARK';

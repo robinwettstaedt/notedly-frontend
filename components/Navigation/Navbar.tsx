@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import SignOut from '../Auth/SignOut';
 import styled from 'styled-components';

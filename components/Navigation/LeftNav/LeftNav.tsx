@@ -3,6 +3,8 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import SignOut from '../../Auth/SignOut';
 import LeftNavBackdrop from './LeftNavBackdrop';
+import CreateNotebook from './Notebook/CreateNotebook';
+import { useNotebookContext } from '../../../lib/contexts/NotebookContext';
 
 type LeftNavProps = {
   leftNavOpen: boolean;
@@ -10,9 +12,11 @@ type LeftNavProps = {
 };
 
 const LeftNav = ({ leftNavOpen, setLeftNavOpen }: LeftNavProps) => {
-  const handleClick = () => {
-    setLeftNavOpen(false);
-  };
+  //   const { token } = useTokenContext();
+  //   const [notebooks, setNotebooks] = useState<NotebookType[] | undefined>([]);
+  const { notebooks } = useNotebookContext();
+
+  console.log('notebooks: ', notebooks);
 
   if (leftNavOpen) {
     return (
@@ -24,10 +28,13 @@ const LeftNav = ({ leftNavOpen, setLeftNavOpen }: LeftNavProps) => {
                 <StyledA>Home</StyledA>
               </StyledLink>
             </li>
+            {notebooks &&
+              notebooks.map((notebook, index) => {
+                return <li key={index}>{notebook.title}</li>;
+              })}
+
             <li>
-              <StyledLink href="/note/1">
-                <StyledA>Note</StyledA>
-              </StyledLink>
+              <CreateNotebook />
             </li>
             <li>
               <SignOut />

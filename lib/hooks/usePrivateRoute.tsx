@@ -2,52 +2,26 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useTokenContext } from '../contexts/TokenContext';
 import { authEndpoints } from '../constants/endpoints';
-
-/*
-if ( token under 20 chars): 
-	try to fetch new token via cookie 
-	set token to new token 
-	if (token still under 20 chars):
-		router to signin
-	else { pass through the component }
-else { pass thorugh the component }
-
-
-*/
+import useUser from './useUser';
 
 const usePrivateRoute = () => {
-  const { token, setToken, setLoading } = useTokenContext();
+  //   const { token } = useTokenContext();
   const router = useRouter();
+  const { user } = useUser();
 
   useEffect(() => {
-    const handle = async () => {
+    const secureRoute = async () => {
       try {
-        if (token.length <= 20) {
-          setLoading(true);
-
-          const response = await fetch(authEndpoints.refreshAccess, {
-            method: 'POST',
-            credentials: 'include',
-          });
-
-          const data = await response.json();
-
-          const accessToken = data.accessToken;
-
-          if (accessToken) {
-            setToken(`Bearer ${accessToken}`);
-            setLoading(false);
-          } else {
-            await router.replace('/auth/sign-in');
-          }
+        if (!user) {
+          await router.replace('/auth/sign-in');
         }
       } catch (error) {
         console.log(error);
       }
     };
 
-    handle();
-  }, [token, setToken, router, setLoading]);
+    secureRoute();
+  }, [user, router]);
 };
 
 export default usePrivateRoute;

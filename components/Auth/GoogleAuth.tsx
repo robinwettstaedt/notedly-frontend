@@ -1,6 +1,7 @@
 import GoogleLogin from 'react-google-login';
 import { useRouter } from 'next/router';
 import { useTokenContext } from '../../lib/contexts/TokenContext';
+import { authEndpoints } from '../../lib/constants/endpoints';
 
 // const googleClientID = process.env.GOOGLE_CLIENT_ID;
 
@@ -14,19 +15,16 @@ const GoogleAuth = ({ id }: GoogleID) => {
 
   const handleLogin = async (googleData: any) => {
     try {
-      const response = await fetch(
-        `${process.env.API_SERVER_URL}/auth/signinwithgoogle`,
-        {
-          method: 'POST',
-          credentials: 'include',
-          body: JSON.stringify({
-            token: googleData.tokenId,
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      const response = await fetch(authEndpoints.signInWithGoogle, {
+        method: 'POST',
+        credentials: 'include',
+        body: JSON.stringify({
+          token: googleData.tokenId,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       const data = await response.json();
       setToken(`Bearer ${data.accessToken}`);
       router.push('/');

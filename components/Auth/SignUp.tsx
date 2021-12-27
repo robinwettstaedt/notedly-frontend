@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTokenContext } from '../../lib/contexts/TokenContext';
+import { authEndpoints } from '../../lib/constants/endpoints';
+import axios from 'axios';
+import useAuth from '../../lib/hooks/useAuth';
 
 const SignUp = () => {
   const router = useRouter();
-  const { setToken } = useTokenContext();
+  const { mutate } = useAuth();
 
   const [username, setUsername] = useState<string>('');
   const [name, setName] = useState<string>('');
@@ -32,24 +35,16 @@ const SignUp = () => {
     try {
       e.preventDefault();
 
-      const response = await fetch(
-        `${process.env.API_SERVER_URL}/auth/signup`,
-        {
-          method: 'POST',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            username: username,
-            firstName: name,
-            email: email,
-            password: pw,
-          }),
-        }
-      );
+      const response = await axios.post(authEndpoints.signUp, {
+        username: username,
+        firstName: name,
+        email: email,
+        password: pw,
+      });
 
-      const data = await response.json();
+      console.log('signup token: ', response.data.accessToken);
+      mutate(`Bearer ${response.data.accessToken}`);
 
-      setToken(`Bearer ${data.accessToken}`);
       router.push('/');
     } catch (error) {
       console.error('error:', error);

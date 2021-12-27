@@ -1,5 +1,5 @@
+import axios from 'axios';
 import { useEffect, useState, createContext, useContext } from 'react';
-import { authEndpoints } from '../constants/endpoints';
 
 type TokenContextType = {
   token: string;
@@ -27,32 +27,10 @@ export const TokenProvider = ({ children }: any) => {
     setLoadingState(loading);
   };
 
-  // after a token is set, a 10 minute timout is initiated which will call the api to refresh the token
-  useEffect(() => {
-    const refreshToken = async () => {
-      setLoading(true);
-      const response = await fetch(authEndpoints.refreshAccess, {
-        method: 'POST',
-        credentials: 'include',
-      });
-
-      const data = await response.json();
-
-      if (data.accessToken) {
-        console.log(data.accessToken);
-        setToken(`Bearer ${data.accessToken}`);
-        setLoading(false);
-      }
-    };
-
-    let timer = setTimeout(() => {
-      refreshToken();
-    }, 600000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [token]);
+  //   useEffect(() => {
+  //     axios.defaults.headers.common['Authorization'] = token;
+  //     axios.defaults.withCredentials = true;
+  //   }, [token]);
 
   return (
     <TokenContext.Provider

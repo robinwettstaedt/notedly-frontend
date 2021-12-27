@@ -4,7 +4,7 @@ import { NoteType } from './noteTypes';
 export type NotebookType = {
   _id: string;
   title: string;
-  color: NotebookColor;
+  color: string;
   hasAccess: NotebookAccessType[];
   createdBy: NotebookAccessType;
   notes?: NotebookNoteType[];
@@ -34,35 +34,35 @@ export type NotebookNoteType = {
 
 export type CreateNotebookType = {
   title: string;
-  color: NotebookColor;
+  color: string;
 };
 
 export type UpdateNotebookType = {
   title?: string;
-  color?: NotebookColor;
+  color?: string;
   hasAccess?: NotebookAccessType[];
   notes?: NotebookNoteType;
   deleted?: boolean;
   visible?: boolean;
 };
 
-export enum NotebookColor {
-  RED = '#ffffff',
-  ORANGE = '#ffffff',
-  YELLOW = '#ffffff',
-  GREEN = '#ffffff',
-  BLUE = '#ffffff',
-  CYAN = '#ffffff',
-  PURPLE = '#ffffff',
-  WHITE = '#ffffff',
-  BROWN = '#ffffff',
-  OLIVE = '#ffffff',
-  TURQUOISE = '#ffffff',
-  LIME = '#ffffff',
-  PINK = '#ffffff',
-  GRAY = '#ffffff',
-  PEACH = '#ffffff',
-}
+// export enum NotebookColor {
+//   RED = '#ffffff',
+//   ORANGE = '#ffffff',
+//   YELLOW = '#ffffff',
+//   GREEN = '#ffffff',
+//   BLUE = '#ffffff',
+//   CYAN = '#ffffff',
+//   PURPLE = '#ffffff',
+//   WHITE = '#ffffff',
+//   BROWN = '#ffffff',
+//   OLIVE = '#ffffff',
+//   TURQUOISE = '#ffffff',
+//   LIME = '#ffffff',
+//   PINK = '#ffffff',
+//   GRAY = '#ffffff',
+//   PEACH = '#ffffff',
+// }
 
 export type NotebookInviteType = {
   _id: string;

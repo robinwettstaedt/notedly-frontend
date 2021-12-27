@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState, createContext } from 'react';
-import { TokenContext, useTokenContext } from './TokenContext';
+import { useTokenContext } from './TokenContext';
 import { UserType } from '../types/userTypes';
-import { Theme } from '../types/userTypes';
-import { authEndpoints, userEndpoints } from '../constants/endpoints';
+import { userEndpoints } from '../constants/endpoints';
+import axios from 'axios';
 
 type UserContextType = {
   user: UserType;
@@ -11,7 +11,7 @@ type UserContextType = {
   setLoading: (loading: boolean) => void;
 };
 
-const defaultUser: UserType = {
+export const defaultUser: UserType = {
   _id: '',
   email: '',
   username: '',
@@ -22,7 +22,6 @@ const defaultUser: UserType = {
     notifications: 'ALL',
     invites: true,
   },
-  notebooks: [],
   createdAt: '',
   updatedAt: '',
 };
@@ -37,7 +36,6 @@ export const UserContext = createContext<UserContextType>({
 export const UserProvider = ({ children }: any) => {
   const [user, setUserState] = useState<UserType>(defaultUser);
   const [loading, setLoadingState] = useState(true);
-  const { token } = useTokenContext();
 
   const setUser = (user: UserType) => {
     setUserState(user);
@@ -46,36 +44,6 @@ export const UserProvider = ({ children }: any) => {
   const setLoading = (loading: boolean) => {
     setLoadingState(loading);
   };
-
-  useEffect(() => {
-    const getUserInfo = async () => {
-      try {
-        if (token.length > 20) {
-          setLoading(true);
-
-          const response = await fetch(userEndpoints.getOrUpdateOrDelete, {
-            method: 'GET',
-            headers: {
-              Authorization: token,
-            },
-          });
-
-          const data = await response.json();
-          const userData: UserType = data.user;
-
-          if (data) {
-            console.log(userData);
-            setUser(userData);
-          }
-          setLoading(false);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getUserInfo();
-  }, [token]);
 
   return (
     <UserContext.Provider
