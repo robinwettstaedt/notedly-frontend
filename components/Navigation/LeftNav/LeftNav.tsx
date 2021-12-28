@@ -3,8 +3,8 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import SignOut from '../../Auth/SignOut';
 import LeftNavBackdrop from './LeftNavBackdrop';
-import CreateNotebook from './Notebook/CreateNotebook';
-import { useNotebookContext } from '../../../lib/contexts/NotebookContext';
+import CreateNotebookButton from './Notebook/CreateNotebook';
+import useNotebooks from '../../../lib/hooks/useNotebook';
 
 type LeftNavProps = {
   leftNavOpen: boolean;
@@ -12,11 +12,7 @@ type LeftNavProps = {
 };
 
 const LeftNav = ({ leftNavOpen, setLeftNavOpen }: LeftNavProps) => {
-  //   const { token } = useTokenContext();
-  //   const [notebooks, setNotebooks] = useState<NotebookType[] | undefined>([]);
-  const { notebooks } = useNotebookContext();
-
-  //   console.log('notebooks: ', notebooks);
+  const { notebooks } = useNotebooks();
 
   if (leftNavOpen) {
     return (
@@ -34,7 +30,7 @@ const LeftNav = ({ leftNavOpen, setLeftNavOpen }: LeftNavProps) => {
               })}
 
             <li>
-              <CreateNotebook />
+              <CreateNotebookButton />
             </li>
             <li>
               <SignOut />
@@ -53,6 +49,7 @@ export default LeftNav;
 
 const StyledLeftNavbar = styled.div`
   display: flex;
+  /* position: absolute;		 */
 `;
 
 const LeftNavigation = styled.div`

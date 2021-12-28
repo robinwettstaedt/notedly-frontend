@@ -1,32 +1,25 @@
 import GoogleLogin from 'react-google-login';
 import { useRouter } from 'next/router';
-import { useTokenContext } from '../../lib/contexts/TokenContext';
 import { authEndpoints } from '../../lib/constants/endpoints';
+import useAuth from '../../lib/hooks/useAuth';
+import axios from 'axios';
 
-// const googleClientID = process.env.GOOGLE_CLIENT_ID;
-
-type GoogleID = {
+type GoogleAuthPropsType = {
   id: string;
 };
 
-const GoogleAuth = ({ id }: GoogleID) => {
+const GoogleAuth = ({ id }: GoogleAuthPropsType) => {
   const router = useRouter();
-  const { setToken } = useTokenContext();
+  const { mutate } = useAuth();
 
   const handleLogin = async (googleData: any) => {
     try {
-      const response = await fetch(authEndpoints.signInWithGoogle, {
-        method: 'POST',
-        credentials: 'include',
-        body: JSON.stringify({
-          token: googleData.tokenId,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const response = await axios.post(authEndpoints.signInWithGoogle, {
+        token: googleData.tokenId,
       });
-      const data = await response.json();
-      setToken(`Bearer ${data.accessToken}`);
+
+      mutate(response.data);
+
       router.push('/');
     } catch (error) {
       console.log(error);

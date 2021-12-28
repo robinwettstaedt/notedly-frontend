@@ -6,7 +6,6 @@ import useAuth from '../../lib/hooks/useAuth';
 
 const SignUp = () => {
   const router = useRouter();
-  //   const { setToken } = useTokenContext();
   const { mutate } = useAuth();
 
   const [email, setEmail] = useState<string>('');
@@ -30,8 +29,7 @@ const SignUp = () => {
         password: pw,
       });
 
-      console.log('signin token: ', response.data);
-      mutate(response.data);
+      await mutate(response.data);
 
       router.push('/');
     } catch (error) {

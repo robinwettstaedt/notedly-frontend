@@ -16,9 +16,8 @@ const LeftNavBackdrop = ({ setLeftNavOpen }: LeftNavBackdropProps) => {
 export default LeftNavBackdrop;
 
 const Backdrop = styled.div`
-  position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(158, 158, 158, 0.082);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 199;
 `;

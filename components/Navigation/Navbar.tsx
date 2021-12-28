@@ -29,6 +29,16 @@ const Navbar = () => {
             </StyledLink>
           </li>
           <li>
+            <StyledLink href="/auth/sign-in">
+              <StyledA>Sign In</StyledA>
+            </StyledLink>
+          </li>
+          <li>
+            <StyledLink href="/auth/sign-up">
+              <StyledA>Sign Up</StyledA>
+            </StyledLink>
+          </li>
+          <li>
             <SignOut />
           </li>
         </StyledUl>

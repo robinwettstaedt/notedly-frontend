@@ -1,28 +1,25 @@
 import { NotebookType } from './../../types/notebookTypes';
 import { notebookEndpoints } from '../../constants/endpoints';
 import { CreateNotebookType } from '../../types/notebookTypes';
+import axios from 'axios';
 
-export const createNotebook = async (
-  token: string,
-  title: string,
-  color: string
-) => {
+export const createNotebook = async (title: string, color: string) => {
   try {
-    const createNotebookData: CreateNotebookType = {
+    const notebook: CreateNotebookType = {
       title,
       color,
     };
 
-    const response = await fetch(notebookEndpoints.createOrGetMany, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: token,
-      },
-      body: JSON.stringify(createNotebookData),
+    console.log('notebookdata: ', notebook);
+
+    const response = await axios.post(notebookEndpoints.createOrGetMany, {
+      title: notebook.title,
+      color: notebook.color,
     });
 
-    const data = await response.json();
+    console.log(response.data);
+
+    const data = response.data;
 
     return data;
   } catch (error) {

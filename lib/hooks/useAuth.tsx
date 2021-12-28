@@ -10,6 +10,7 @@ const useAuth = () => {
 
   const { data, mutate, error } = useSWR(authEndpoints.refreshAccess, fetcher, {
     refreshInterval: 600000, // 10 mins
+    errorRetryCount: 0,
   });
 
   const loading = !data && !error;
@@ -26,7 +27,7 @@ const useAuth = () => {
   return {
     loading,
     error,
-    token,
+    // token,
     mutate,
   };
 };

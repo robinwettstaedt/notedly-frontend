@@ -10,10 +10,6 @@ const WelcomePage: React.FC = () => {
   return (
     <>
       {user ? <pre> {JSON.stringify(user, null, 2)}</pre> : <p>loading...</p>}
-      <SignOut />
-      <Link href="/note">
-        <a>Link to the Text Editors</a>
-      </Link>
       {/* <EmojiMart /> */}
     </>
   );

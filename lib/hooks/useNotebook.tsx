@@ -1,22 +1,22 @@
-import { userEndpoints } from './../constants/endpoints';
+import { notebookEndpoints } from './../constants/endpoints';
 import useSWR from 'swr';
 import axios from 'axios';
-import { UserType } from '../types/userTypes';
+import { NotebookType } from '../types/notebookTypes';
 
-const useUser = () => {
-  let user: UserType | null = null;
+const useNotebooks = () => {
+  let notebooks: NotebookType[] | null = null;
 
   const fetcher = async (url: string) =>
     await axios.get(url).then((res) => res.data);
 
   const { data, mutate, error } = useSWR(
-    userEndpoints.getOrUpdateOrDelete,
+    notebookEndpoints.createOrGetMany,
     fetcher,
     { errorRetryInterval: 100 }
   );
 
   if (data) {
-    user = data.user;
+    notebooks = data;
   }
 
   const loading = !data && !error;
@@ -24,9 +24,9 @@ const useUser = () => {
   return {
     loading,
     error,
-    user,
-    mutateUser: mutate,
+    notebooks,
+    mutateNotebooks: mutate,
   };
 };
 
-export default useUser;
+export default useNotebooks;

@@ -1,15 +1,13 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { authEndpoints } from '../../lib/constants/endpoints';
-import { useTokenContext } from '../../lib/contexts/TokenContext';
-import { useUserContext, defaultUser } from '../../lib/contexts/UserContext';
+import useAuth from '../../lib/hooks/useAuth';
 import useUser from '../../lib/hooks/useUser';
 
 const SignOut = () => {
   const router = useRouter();
-  const { setToken } = useTokenContext();
-  //   const { setUser } = useUserContext();
-  const { mutate } = useUser();
+  const { mutateUser } = useUser();
+  const { mutate } = useAuth();
 
   const handleClick = async () => {
     try {
@@ -20,9 +18,8 @@ const SignOut = () => {
 
       await axios.post(authEndpoints.signOut);
 
-      setToken(``);
-      //   setUser(defaultUser);
-      mutate(null);
+      await mutate(null);
+      await mutateUser(null);
 
       router.push('/auth/sign-in');
     } catch (error) {

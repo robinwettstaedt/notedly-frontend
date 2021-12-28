@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { useTokenContext } from '../../../../lib/contexts/TokenContext';
 import { createNotebook } from '../../../../lib/Helpers/apiRequests/notebookRequests';
 
-const CreateNotebook = () => {
+const CreateNotebookButton = () => {
   const { token } = useTokenContext();
 
   const handleClick = async () => {
-    return await createNotebook(token, 'Hi', '#ffffff');
+    return await createNotebook('Hi', '#ffffff');
   };
 
   return (
@@ -17,6 +17,6 @@ const CreateNotebook = () => {
   );
 };
 
-export default CreateNotebook;
+export default CreateNotebookButton;
 
 const StyledNotebook = styled.div``;
