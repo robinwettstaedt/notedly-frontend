@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useTokenContext } from '../../../../lib/contexts/TokenContext';
 import { createNotebook } from '../../../../lib/Helpers/apiRequests/notebookRequests';
+import useNotebooks from '../../../../lib/hooks/useNotebook';
 
 const CreateNotebookButton = () => {
-  const { token } = useTokenContext();
+  const { mutateNotebooks } = useNotebooks();
 
   const handleClick = async () => {
-    return await createNotebook('Hi', '#ffffff');
+    await createNotebook('Hi', '#ffffff');
+    mutateNotebooks();
   };
 
   return (

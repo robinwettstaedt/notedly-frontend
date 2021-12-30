@@ -1,18 +1,14 @@
 import React from 'react';
-import Link from 'next/link';
-import SignOut from '../components/Auth/SignOut';
 import useUser from '../lib/hooks/useUser';
 import { withAuth } from '../components/Auth/withAuth';
 
 const WelcomePage: React.FC = () => {
-  const { user } = useUser();
+  const { user, error } = useUser();
 
-  return (
-    <>
-      {user ? <pre> {JSON.stringify(user, null, 2)}</pre> : <p>loading...</p>}
-      {/* <EmojiMart /> */}
-    </>
-  );
+  if (error) return <p>There was an error!</p>;
+  if (!user) return <p>loading...</p>;
+
+  return <pre> {JSON.stringify(user, null, 2)}</pre>;
 };
 
 export default withAuth(WelcomePage);

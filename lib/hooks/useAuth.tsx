@@ -3,6 +3,8 @@ import useSWR from 'swr';
 import axios from 'axios';
 
 const useAuth = () => {
+  let token: string = '';
+
   axios.defaults.withCredentials = true;
 
   const fetcher = async (url: string) =>
@@ -14,8 +16,6 @@ const useAuth = () => {
   });
 
   const loading = !data && !error;
-
-  let token: string = '';
 
   if (data) {
     console.log('useAuth data: ', data);

@@ -19,10 +19,10 @@ const useUser = () => {
     user = data.user;
   }
 
-  const loading = !data && !error;
+  //   const loading = !data && !error;
 
   return {
-    loading,
+    // loading,
     error,
     user,
     mutateUser: mutate,
