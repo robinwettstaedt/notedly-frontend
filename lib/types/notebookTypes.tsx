@@ -10,6 +10,8 @@ export type NotebookType = {
   notes?: NotebookNoteType[];
   deleted: boolean;
   deletedAt?: string;
+  archived: boolean;
+  archivedAt?: string;
   visible: boolean;
   createdAt: string;
   updatedAt: string;
@@ -29,6 +31,8 @@ export type NotebookNoteType = {
   emoji: EmojiData | {};
   deleted: boolean;
   deletedAt?: string;
+  archived: boolean;
+  archivedAt?: string;
   visible: boolean;
 };
 
@@ -40,9 +44,8 @@ export type CreateNotebookType = {
 export type UpdateNotebookType = {
   title?: string;
   color?: string;
-  hasAccess?: NotebookAccessType[];
-  notes?: NotebookNoteType;
   deleted?: boolean;
+  archived?: boolean;
   visible?: boolean;
 };
 
@@ -67,18 +70,8 @@ export type UpdateNotebookType = {
 export type NotebookInviteType = {
   _id: string;
   notebook: string;
-  inviter: {
-    _id: string;
-    email: string;
-    firstName: string;
-    picture: string;
-  };
-  receiver: {
-    _id: string;
-    email: string;
-    firstName: string;
-    picture: string;
-  };
+  inviter: NotebookAccessType;
+  receiver: NotebookAccessType;
   createdAt: string;
   updatedAt: string;
 };

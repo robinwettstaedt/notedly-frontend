@@ -12,6 +12,8 @@ export type NoteType = {
   createdBy: NoteAccessType;
   deleted: boolean;
   deletedAt?: string;
+  archived: boolean;
+  archivedAt?: string;
   visible: boolean;
   lastUpdatedBy: NoteAccessType;
   createdAt: string;
@@ -39,6 +41,7 @@ export type UpdateNoteType = {
   emoji?: EmojiData | {};
   hasAccess?: NoteAccessType[];
   deleted?: boolean;
+  archived?: boolean;
   visible?: boolean;
   locked?: boolean;
   favourited?: boolean;
@@ -47,18 +50,8 @@ export type UpdateNoteType = {
 export type NoteInviteType = {
   _id: string;
   note: string;
-  inviter: {
-    _id: string;
-    email: string;
-    firstName: string;
-    picture: string;
-  };
-  receiver: {
-    _id: string;
-    email: string;
-    firstName: string;
-    picture: string;
-  };
+  inviter: NoteAccessType;
+  receiver: NoteAccessType;
   createdAt: string;
   updatedAt: string;
 };

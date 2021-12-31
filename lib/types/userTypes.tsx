@@ -5,8 +5,8 @@ export type UserType = {
   firstName: string;
   picture: string;
   settings: {
-    theme: Theme;
-    notifications: Notifications;
+    theme: ThemeType;
+    notifications: NotificationsType;
     invites: Boolean;
   };
   createdAt: string;
@@ -20,12 +20,12 @@ export type UpdateUserType = {
   password?: string;
   picture?: string;
   settings?: {
-    theme: Theme;
-    notifications: Notifications;
+    theme: ThemeType;
+    notifications: NotificationsType;
     invites: Boolean;
   };
 };
 
-export type Theme = 'LIGHT' | 'DARK';
+export type ThemeType = 'LIGHT' | 'DARK' | 'AUTO';
 
-export type Notifications = 'ALL' | 'TODOS' | 'INVITES' | 'NONE';
+export type NotificationsType = 'ALL' | 'TODOS' | 'INVITES' | 'NONE';
