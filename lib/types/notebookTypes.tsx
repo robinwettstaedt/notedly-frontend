@@ -1,5 +1,4 @@
 import { EmojiData } from 'emoji-mart';
-import { NoteType } from './noteTypes';
 
 export type NotebookType = {
   _id: string;

@@ -7,7 +7,7 @@ import useUser from '../../lib/hooks/useUser';
 const SignOut = () => {
   const router = useRouter();
   const { mutateUser } = useUser();
-  const { mutate } = useAuth();
+  const { mutateToken } = useAuth();
 
   const handleClick = async () => {
     try {
@@ -18,10 +18,10 @@ const SignOut = () => {
 
       await axios.post(authEndpoints.signOut);
 
-      await mutate(null);
+      await mutateToken(null);
       await mutateUser(null);
 
-      router.push('/auth/sign-in');
+      //   router.push('/auth/sign-in');
     } catch (error) {
       console.error('error:', error);
     }

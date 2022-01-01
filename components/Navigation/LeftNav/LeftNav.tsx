@@ -1,10 +1,9 @@
 import React from 'react';
-import Link from 'next/link';
 import styled from 'styled-components';
-import SignOut from '../../Auth/SignOut';
 import LeftNavBackdrop from './LeftNavBackdrop';
 import CreateNotebookButton from './Notebook/CreateNotebook';
-import useNotebooks from '../../../lib/hooks/useNotebook';
+import useNotebooks from '../../../lib/hooks/useNotebooks';
+import Notebook from './Notebook/Notebook';
 
 type LeftNavProps = {
   leftNavOpen: boolean;
@@ -19,21 +18,16 @@ const LeftNav = ({ leftNavOpen, setLeftNavOpen }: LeftNavProps) => {
       <StyledLeftNavbar>
         <LeftNavigation>
           <StyledUl>
-            <li>
-              <StyledLink href="/">
-                <StyledA>Home</StyledA>
-              </StyledLink>
-            </li>
             {notebooks &&
-              notebooks.map((notebook, index) => {
-                return <li key={index}>{notebook.title}</li>;
+              notebooks.map((notebook) => {
+                return (
+                  <li key={notebook._id}>
+                    <Notebook notebook={notebook} />
+                  </li>
+                );
               })}
-
             <li>
               <CreateNotebookButton />
-            </li>
-            <li>
-              <SignOut />
             </li>
           </StyledUl>
         </LeftNavigation>
@@ -48,14 +42,18 @@ const LeftNav = ({ leftNavOpen, setLeftNavOpen }: LeftNavProps) => {
 export default LeftNav;
 
 const StyledLeftNavbar = styled.div`
+  top: 5vh;
   display: flex;
-  /* position: absolute;		 */
+  position: fixed;
+  width: 100vw;
+  height: 95vh;
+  z-index: 101;
 `;
 
 const LeftNavigation = styled.div`
-  height: 100vh;
+  height: 100%;
   background: #2b976e;
-  width: 80vw;
+  width: 80%;
   z-index: 200;
 `;
 
@@ -65,9 +63,3 @@ const StyledUl = styled.ul`
   gap: 4rem;
   list-style: none;
 `;
-
-const StyledA = styled.a`
-  text-decoration: none;
-`;
-
-const StyledLink = styled(Link)``;

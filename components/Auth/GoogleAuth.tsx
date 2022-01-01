@@ -10,7 +10,7 @@ type GoogleAuthPropsType = {
 
 const GoogleAuth = ({ id }: GoogleAuthPropsType) => {
   const router = useRouter();
-  const { mutate } = useAuth();
+  const { mutateToken } = useAuth();
 
   const handleLogin = async (googleData: any) => {
     try {
@@ -18,7 +18,7 @@ const GoogleAuth = ({ id }: GoogleAuthPropsType) => {
         token: googleData.tokenId,
       });
 
-      mutate(response.data);
+      await mutateToken(response.data);
 
       router.push('/');
     } catch (error) {

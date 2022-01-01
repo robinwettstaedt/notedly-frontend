@@ -7,7 +7,7 @@ import useAuth from '../../lib/hooks/useAuth';
 
 const SignUp = () => {
   const router = useRouter();
-  const { mutate } = useAuth();
+  const { mutateToken } = useAuth();
 
   const [username, setUsername] = useState<string>('');
   const [name, setName] = useState<string>('');
@@ -42,8 +42,7 @@ const SignUp = () => {
         password: pw,
       });
 
-      console.log('signup token: ', response.data.accessToken);
-      mutate(`Bearer ${response.data.accessToken}`);
+      await mutateToken(response.data);
 
       router.push('/');
     } catch (error) {

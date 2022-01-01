@@ -1,19 +1,17 @@
 /* eslint-disable react/display-name */
+import { useRouter } from 'next/router';
 import React, { ComponentType } from 'react';
-import useUser from '../../lib/hooks/useUser';
+import useAuth from '../../lib/hooks/useAuth';
 
 export function withAuth<T>(Component: ComponentType<T>) {
   return (hocProps: T) => {
-    const { user } = useUser();
+    const { token, isLoading, isError } = useAuth();
+    const router = useRouter();
 
-    if (user) {
-      return <Component {...hocProps} />;
-    } else {
-      return (
-        <>
-          <p>loading.........</p>
-        </>
-      );
-    }
+    if (isError) router.push('/auth/sign-in');
+    if (isLoading) return <p>loading...</p>;
+    if (token) return <Component {...hocProps} />;
+
+    return <></>;
   };
 }

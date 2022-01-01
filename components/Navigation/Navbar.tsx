@@ -52,7 +52,9 @@ export default Navbar;
 
 const StyledNavbar = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  /* flex-direction: column; */
+  height: 5vh;
 `;
 
 const StyledUl = styled.ul`

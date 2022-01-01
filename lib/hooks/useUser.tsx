@@ -4,28 +4,28 @@ import axios from 'axios';
 import { UserType } from '../types/userTypes';
 
 const useUser = () => {
-  let user: UserType | null = null;
+  //   let user: UserType | null = null;
 
   const fetcher = async (url: string) =>
     await axios.get(url).then((res) => res.data);
 
   const { data, mutate, error } = useSWR(
-    userEndpoints.getOrUpdateOrDelete,
-    fetcher,
-    { errorRetryInterval: 100 }
+    () =>
+      axios.defaults.headers.common['Authorization']
+        ? userEndpoints.getOrUpdateOrDelete
+        : false,
+    fetcher
   );
 
-  if (data) {
-    user = data.user;
-  }
-
-  //   const loading = !data && !error;
+  //   if (data) {
+  //     user = data.user;
+  //   }
 
   return {
-    // loading,
-    error,
-    user,
+    user: data,
     mutateUser: mutate,
+    isLoading: !error && !data,
+    isError: error,
   };
 };
 

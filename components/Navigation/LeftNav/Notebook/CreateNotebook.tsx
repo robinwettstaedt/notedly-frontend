@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { createNotebook } from '../../../../lib/Helpers/apiRequests/notebookRequests';
-import useNotebooks from '../../../../lib/hooks/useNotebook';
+import useNotebooks from '../../../../lib/hooks/useNotebooks';
 
 const CreateNotebookButton = () => {
   const { mutateNotebooks } = useNotebooks();

@@ -10,7 +10,6 @@ import {
 import { EditorProps } from 'react-draft-wysiwyg';
 
 import toolbarDefaultsDark from '../../lib/constants/DraftEditorConstants/toolbarDefaultsDark';
-import SignOut from '../Auth/SignOut';
 
 import {
   NoteType,
@@ -130,7 +129,6 @@ const TextEditorDark = (noteID: any) => {
       <button onClick={handleGet}>Get</button>
       <button onClick={handlePost}>CREATE</button>
       <button onClick={handlePut}>UPDATE</button>
-      <SignOut />
     </>
   );
 };
