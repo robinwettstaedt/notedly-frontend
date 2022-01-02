@@ -14,48 +14,71 @@ import toolbarDefaultsDark from '../../lib/constants/DraftEditorConstants/toolba
 import { stateToHTML } from 'draft-js-export-html';
 // nextjs SSR specific shenanigangs
 import dynamic from 'next/dynamic';
-import { getNote } from '../../lib/Helpers/apiRequests/editorRequests';
+import {
+  getNote,
+  updateNoteContent,
+} from '../../lib/Helpers/apiRequests/editorRequests';
+import { NoteType } from '../../lib/types/noteTypes';
 const Editor = dynamic<EditorProps>(
   () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
   { ssr: false }
 );
 
 type TextEditorProsType = {
-  // because of nextjs router query
-  noteID: string | string[] | undefined;
+  note: NoteType;
 };
 
-const TextEditorDark = ({ noteID }: TextEditorProsType) => {
+const TextEditorDark = ({ note }: TextEditorProsType) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-
   const [html, setHtml] = useState(
     stateToHTML(editorState.getCurrentContent())
   );
 
-  const switchEditingMode = () => {
-    setIsEditing(!isEditing);
-  };
-  //   useEffect(() => {
-  //     const handleGet = async () => {
-  //       const note = await getNote(noteID);
+  useEffect(() => {
+    const parseNoteContent = async () => {
+      const parsedContent = await JSON.parse(note.content);
 
-  //       //   // set the content of the editor window to the content received by the api (get req)
-  //       setEditorState(
-  //         EditorState.createWithContent(convertFromRaw(note.content))
-  //       );
-  //     };
-  //     handleGet();
-  //   }, [noteID]);
+      //   // set the content of the editor window to the content received by the api (get req)
+      setEditorState(
+        EditorState.createWithContent(convertFromRaw(parsedContent))
+      );
+    };
+    parseNoteContent();
+  }, [note]);
 
+  // update the html
   useEffect(() => {
     setHtml(stateToHTML(editorState.getCurrentContent()));
   }, [editorState]);
 
-  // for updating the notes content (put req)
-  //   const rawEditorContent = JSON.stringify(
-  // 	convertToRaw(editorState.getCurrentContent())
-  //   );
+  //   // update the note content every 10 seconds
+  //   useEffect(() => {
+  //     const saveNoteContent = async () => {
+  //       // for updating the notes content (put req)
+  //       const rawEditorContent = JSON.stringify(
+  //         convertToRaw(editorState.getCurrentContent())
+  //       );
+
+  //       await updateNoteContent(note._id, rawEditorContent);
+  //     };
+
+  //     const interval = setInterval(() => {
+  //       saveNoteContent();
+  //     }, 10000);
+
+  //     return () => clearInterval(interval);
+  //     // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   }, []);
+
+  const saveNoteContent = async () => {
+    // for updating the notes content (put req)
+    const rawEditorContent = JSON.stringify(
+      convertToRaw(editorState.getCurrentContent())
+    );
+
+    await updateNoteContent(note._id, rawEditorContent);
+  };
 
   return (
     <>
@@ -69,12 +92,13 @@ const TextEditorDark = ({ noteID }: TextEditorProsType) => {
             toolbarClassName="toolbar-wrapper-dark"
             toolbar={toolbarDefaultsDark}
           />
-          <button onClick={switchEditingMode}>stop editing</button>
+          <button onClick={() => setIsEditing(!isEditing)}>stop editing</button>
+          <button onClick={saveNoteContent}>save</button>
         </>
       ) : (
         <>
           <div dangerouslySetInnerHTML={{ __html: html }} />
-          <button onClick={switchEditingMode}>edit</button>
+          <button onClick={() => setIsEditing(!isEditing)}>edit</button>
         </>
       )}
     </>

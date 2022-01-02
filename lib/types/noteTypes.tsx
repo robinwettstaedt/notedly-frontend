@@ -5,7 +5,7 @@ import { NotebookType } from './notebookTypes';
 export type NoteType = {
   _id: string;
   title: string;
-  content: RawDraftContentState;
+  content: string;
   notebook: NotebookType;
   emoji: EmojiData | {};
   hasAccess: NoteAccessType[];
@@ -36,7 +36,6 @@ export type CreateNoteType = {
 
 export type UpdateNoteType = {
   title?: string;
-  content?: string;
   notebook?: string;
   emoji?: EmojiData | {};
   hasAccess?: NoteAccessType[];
@@ -45,6 +44,10 @@ export type UpdateNoteType = {
   visible?: boolean;
   locked?: boolean;
   favourited?: boolean;
+};
+
+export type UpdateNoteContentType = {
+  content: string;
 };
 
 export type NoteInviteType = {

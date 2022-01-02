@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { noteEndpoints } from './../../constants/endpoints';
-import { NoteType, UpdateNoteType } from '../../../lib/types/noteTypes';
+import { NoteType, UpdateNoteContentType } from '../../../lib/types/noteTypes';
 
 //   save the current note to the database
 //   should be called timely for autosave
@@ -9,18 +9,25 @@ export const updateNoteContent = async (
   noteID: string,
   rawEditorContent: string
 ) => {
-  const updateNoteData: UpdateNoteType = {
-    content: rawEditorContent,
-  };
+  try {
+    const updateNoteData: UpdateNoteContentType = {
+      content: rawEditorContent,
+    };
 
-  await axios.put(noteEndpoints.getOrUpdateOrDelete(noteID), updateNoteData);
+    await axios.put(noteEndpoints.getOrUpdateOrDelete(noteID), updateNoteData);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // getting the content of the note and updates the Editor's state
-export const getNote = async (noteID: string): Promise<NoteType> => {
-  const response = await axios.get(noteEndpoints.getOrUpdateOrDelete(noteID));
+export const getNote = async (noteID: string) => {
+  try {
+    const response = await axios.get(noteEndpoints.getOrUpdateOrDelete(noteID));
+    const note: NoteType = response.data;
 
-  const note: NoteType = response.data;
-
-  return note;
+    return note;
+  } catch (error) {
+    console.log(error);
+  }
 };
