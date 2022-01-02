@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import useLocalStorage from '../../../../lib/hooks/useLocalStorage';
 import { NotebookType } from '../../../../lib/types/notebookTypes';
 import Note from '../Note/Note';
 import AddNoteButton from './AddNoteButton';
@@ -9,7 +10,9 @@ type notebookPropsType = {
 };
 
 const Notebook = ({ notebook }: notebookPropsType) => {
-  const [notesVisible, setNotesVisible] = useState<boolean>(false);
+  //   const [notesVisible, setNotesVisible] = useState<boolean>(false);
+  const { storedValue: notesVisible, setValue: setNotesVisible } =
+    useLocalStorage(notebook._id, false);
 
   const handleDropout = () => {
     setNotesVisible(!notesVisible);
@@ -17,8 +20,8 @@ const Notebook = ({ notebook }: notebookPropsType) => {
 
   return (
     <Wrapper>
-      <StyledNotebook onClick={handleDropout}>
-        <StyledTitle> {notebook.title} </StyledTitle>
+      <StyledNotebook>
+        <StyledTitle onClick={handleDropout}> {notebook.title} </StyledTitle>
 
         <AddNoteButton notebookID={notebook._id} />
       </StyledNotebook>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import LeftNavBackdrop from './LeftNavBackdrop';
-import CreateNotebookButton from './Notebook/CreateNotebook';
+import CreateNotebookButton from './Notebook/CreateNotebookButton';
 import useNotebooks from '../../../lib/hooks/useNotebooks';
 import Notebook from './Notebook/Notebook';
 
@@ -26,10 +26,8 @@ const LeftNav = ({ leftNavOpen, setLeftNavOpen }: LeftNavProps) => {
                   </li>
                 );
               })}
-            <li>
-              <CreateNotebookButton />
-            </li>
           </StyledUl>
+          <CreateNotebookButton />
         </LeftNavigation>
         <LeftNavBackdrop setLeftNavOpen={setLeftNavOpen} />
       </StyledLeftNavbar>
@@ -51,9 +49,11 @@ const StyledLeftNavbar = styled.div`
 `;
 
 const LeftNavigation = styled.div`
+  /* display: flex;
+  flex-direction: column; */
   height: 100%;
-  background: #2b976e;
   width: 80%;
+  background: #2b976e;
   z-index: 200;
 `;
 

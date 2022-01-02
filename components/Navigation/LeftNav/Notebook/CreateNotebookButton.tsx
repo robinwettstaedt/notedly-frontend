@@ -11,13 +11,13 @@ const CreateNotebookButton = () => {
     mutateNotebooks();
   };
 
-  return (
-    <StyledNotebook>
-      <button onClick={handleClick}>create Notebook</button>
-    </StyledNotebook>
-  );
+  return <StyledButton onClick={handleClick}>create Notebook</StyledButton>;
 };
 
 export default CreateNotebookButton;
 
-const StyledNotebook = styled.div``;
+const StyledButton = styled.button`
+  position: fixed;
+  bottom: 10px;
+  /* justify-self: end; */
+`;
