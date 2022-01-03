@@ -20,6 +20,8 @@ function App() {
     <div className="App">
       <Picker emoji=":thumbsup:" color="blue" onSelect={handleSelect} />
       {emoji && <Emoji emoji={emoji} size={24} />}
+
+      {/* <pre>{JSON.stringify(emoji)}</pre> */}
     </div>
   );
 }

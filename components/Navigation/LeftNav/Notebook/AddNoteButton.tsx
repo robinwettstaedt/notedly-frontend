@@ -3,7 +3,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { noteEndpoints } from '../../../../lib/constants/endpoints';
 import useNotebooks from '../../../../lib/hooks/useNotebooks';
-import { CreateNoteType } from '../../../../lib/types/noteTypes';
+import {
+  CreateNoteType,
+  defaultNoteEmoji,
+} from '../../../../lib/types/noteTypes';
 
 type AddNoteButtonPropsType = {
   notebookID: string;
@@ -16,11 +19,11 @@ const AddNoteButton = ({ notebookID }: AddNoteButtonPropsType) => {
     title: 'untitled',
     content: '',
     notebook: notebookID,
-    emoji: {},
+    emoji: defaultNoteEmoji,
   };
 
   const addNote = async () => {
-    const response = await axios.post(noteEndpoints.create, newNote);
+    await axios.post(noteEndpoints.create, newNote);
     mutateNotebooks(null);
   };
 

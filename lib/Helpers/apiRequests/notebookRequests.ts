@@ -1,20 +1,21 @@
+import { EmojiData } from 'emoji-mart';
 import { NotebookType } from './../../types/notebookTypes';
 import { notebookEndpoints } from '../../constants/endpoints';
 import { CreateNotebookType } from '../../types/notebookTypes';
 import axios from 'axios';
 
-export const createNotebook = async (title: string, color: string) => {
+export const createNotebook = async (title: string, emoji: string) => {
   try {
     const notebook: CreateNotebookType = {
       title,
-      color,
+      emoji,
     };
 
     console.log('notebookdata: ', notebook);
 
     const response = await axios.post(notebookEndpoints.createOrGetMany, {
       title: notebook.title,
-      color: notebook.color,
+      emoji: notebook.emoji,
     });
 
     console.log(response.data);

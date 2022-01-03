@@ -7,7 +7,7 @@ export type NoteType = {
   title: string;
   content: string;
   notebook: NotebookType;
-  emoji: EmojiData | {};
+  emoji: string;
   hasAccess: NoteAccessType[];
   createdBy: NoteAccessType;
   deleted: boolean;
@@ -31,13 +31,13 @@ export type CreateNoteType = {
   title: string;
   content: string;
   notebook: string;
-  emoji: EmojiData | {};
+  emoji: string;
 };
 
 export type UpdateNoteType = {
   title?: string;
   notebook?: string;
-  emoji?: EmojiData | {};
+  emoji?: string;
   hasAccess?: NoteAccessType[];
   deleted?: boolean;
   archived?: boolean;
@@ -62,3 +62,5 @@ export type NoteInviteType = {
 export type CreateNoteInviteType = {
   receiver: string;
 };
+
+export const defaultNoteEmoji = 'spiral_note_pad';

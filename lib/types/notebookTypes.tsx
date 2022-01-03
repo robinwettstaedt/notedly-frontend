@@ -3,7 +3,7 @@ import { EmojiData } from 'emoji-mart';
 export type NotebookType = {
   _id: string;
   title: string;
-  color: string;
+  emoji: string;
   hasAccess: NotebookAccessType[];
   createdBy: NotebookAccessType;
   notes?: NotebookNoteType[];
@@ -27,7 +27,7 @@ export type NotebookAccessType = {
 export type NotebookNoteType = {
   _id: string;
   title: string;
-  emoji: EmojiData | {};
+  emoji: string;
   deleted: boolean;
   deletedAt?: string;
   archived: boolean;
@@ -37,34 +37,16 @@ export type NotebookNoteType = {
 
 export type CreateNotebookType = {
   title: string;
-  color: string;
+  emoji: string;
 };
 
 export type UpdateNotebookType = {
   title?: string;
-  color?: string;
+  emoji?: string;
   deleted?: boolean;
   archived?: boolean;
   visible?: boolean;
 };
-
-// export enum NotebookColor {
-//   RED = '#ffffff',
-//   ORANGE = '#ffffff',
-//   YELLOW = '#ffffff',
-//   GREEN = '#ffffff',
-//   BLUE = '#ffffff',
-//   CYAN = '#ffffff',
-//   PURPLE = '#ffffff',
-//   WHITE = '#ffffff',
-//   BROWN = '#ffffff',
-//   OLIVE = '#ffffff',
-//   TURQUOISE = '#ffffff',
-//   LIME = '#ffffff',
-//   PINK = '#ffffff',
-//   GRAY = '#ffffff',
-//   PEACH = '#ffffff',
-// }
 
 export type NotebookInviteType = {
   _id: string;
@@ -78,3 +60,5 @@ export type NotebookInviteType = {
 export type CreateNotebookInviteType = {
   receiver: string;
 };
+
+export const defaultNotebookEmoji = 'notebook';

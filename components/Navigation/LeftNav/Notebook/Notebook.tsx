@@ -1,3 +1,4 @@
+import { Emoji } from 'emoji-mart';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import useLocalStorage from '../../../../lib/hooks/useLocalStorage';
@@ -14,6 +15,8 @@ const Notebook = ({ notebook }: notebookPropsType) => {
   const { storedValue: notesVisible, setValue: setNotesVisible } =
     useLocalStorage(notebook._id, false);
 
+  console.log('notebook emoji: ', notebook.emoji);
+
   const handleDropout = () => {
     setNotesVisible(!notesVisible);
   };
@@ -21,6 +24,7 @@ const Notebook = ({ notebook }: notebookPropsType) => {
   return (
     <Wrapper>
       <StyledNotebook>
+        <Emoji emoji={notebook.emoji} size={24} />
         <StyledTitle onClick={handleDropout}> {notebook.title} </StyledTitle>
 
         <AddNoteButton notebookID={notebook._id} />

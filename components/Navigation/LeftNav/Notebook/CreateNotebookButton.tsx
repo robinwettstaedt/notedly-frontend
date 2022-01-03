@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { createNotebook } from '../../../../lib/Helpers/apiRequests/notebookRequests';
 import useNotebooks from '../../../../lib/hooks/useNotebooks';
+import { defaultNotebookEmoji } from '../../../../lib/types/notebookTypes';
 
 const CreateNotebookButton = () => {
   const { mutateNotebooks } = useNotebooks();
 
   const handleClick = async () => {
-    await createNotebook('Hi', '#ffffff');
+    await createNotebook('Hi', defaultNotebookEmoji);
     mutateNotebooks();
   };
 
