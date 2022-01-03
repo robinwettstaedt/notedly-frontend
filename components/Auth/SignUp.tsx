@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useTokenContext } from '../../lib/contexts/TokenContext';
 import { authEndpoints } from '../../lib/constants/endpoints';
 import axios from 'axios';
 import useAuth from '../../lib/hooks/useAuth';

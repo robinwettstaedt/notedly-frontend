@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useTokenContext } from '../../lib/contexts/TokenContext';
 
 import {
   EditorState,
@@ -14,10 +13,7 @@ import toolbarDefaultsDark from '../../lib/constants/DraftEditorConstants/toolba
 import { stateToHTML } from 'draft-js-export-html';
 // nextjs SSR specific shenanigangs
 import dynamic from 'next/dynamic';
-import {
-  getNote,
-  updateNoteContent,
-} from '../../lib/Helpers/apiRequests/editorRequests';
+import { updateNoteContent } from '../../lib/Helpers/apiRequests/editorRequests';
 import { NoteType } from '../../lib/types/noteTypes';
 const Editor = dynamic<EditorProps>(
   () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
@@ -35,6 +31,7 @@ const TextEditorDark = ({ note }: TextEditorProsType) => {
     stateToHTML(editorState.getCurrentContent())
   );
 
+  // get the initial content
   useEffect(() => {
     const parseNoteContent = async () => {
       const parsedContent = await JSON.parse(note.content);
@@ -93,7 +90,6 @@ const TextEditorDark = ({ note }: TextEditorProsType) => {
             toolbar={toolbarDefaultsDark}
           />
           <button onClick={() => setIsEditing(!isEditing)}>stop editing</button>
-          <button onClick={saveNoteContent}>save</button>
         </>
       ) : (
         <>
@@ -101,6 +97,7 @@ const TextEditorDark = ({ note }: TextEditorProsType) => {
           <button onClick={() => setIsEditing(!isEditing)}>edit</button>
         </>
       )}
+      <button onClick={saveNoteContent}>save</button>
     </>
   );
 };
