@@ -1,9 +1,9 @@
 import React from 'react';
 import GoogleAuth from '../../components/Auth/GoogleAuth';
-import SignUp from '../../components/Auth/SignUp';
 import { GetServerSideProps } from 'next';
+import SignUpForm from '../../components/Auth/SignUpForm';
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
@@ -14,8 +14,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const SignUpPage = ({ GOOGLE_CLIENT_ID }: any) => {
   return (
     <>
-      {/* <GoogleAuth id={GOOGLE_CLIENT_ID} /> */}
-      <SignUp />
+      <GoogleAuth id={GOOGLE_CLIENT_ID} />
+      <SignUpForm />
     </>
   );
 };
