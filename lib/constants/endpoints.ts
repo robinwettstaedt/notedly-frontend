@@ -14,6 +14,7 @@ export const authEndpoints = {
   signOut: `${authBase}/signout`,
   refreshAccess: `${authBase}/refreshaccess`,
   signInWithGoogle: `${authBase}/signinwithgoogle`,
+  checkUsername: `${authBase}/checkusername`,
 };
 
 export const userEndpoints = {
