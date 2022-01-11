@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
+import React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -27,51 +27,29 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
 const SignUpForm = () => {
   const router = useRouter();
   const { mutateToken } = useAuth();
-  const [usernameTimeout, setUsernameTimeout] = useState<NodeJS.Timeout>();
-  const [usernameResponseStatusCode, setUsernameReponseStatusCode] =
-    useState<number>();
 
   const checkUsername = async (value: string) => {
-    // if a previous timeout has not yet resolved, clear it
-    if (usernameTimeout) {
-      clearTimeout(usernameTimeout);
-    }
+    if (value.length > 1) {
+      let error;
 
-    // creating a timeout so that not every keystroke
-    // triggers an API call
-    const timeout = setTimeout(async () => {
       try {
-        const response = await axios.post(
-          authEndpoints.checkUsername,
-          {
-            username: value,
-          }
-          // { validateStatus: () => true }
-        );
-        setUsernameReponseStatusCode(response.status);
-      } catch (error: any) {
-        setUsernameReponseStatusCode(error.response.status);
+        await axios.post(authEndpoints.checkUsername, {
+          username: value,
+        });
+      } catch (e: any) {
+        error = 'Username taken';
       }
-    }, 500);
 
-    setUsernameTimeout(timeout);
-
-    if (usernameResponseStatusCode) {
-      if (usernameResponseStatusCode === 400) {
-        return 'username taken';
-      }
+      return error;
     }
-
-    return undefined;
   };
 
   return (
     <>
       <Formik
         initialValues={{ email: '', password: '', username: '', firstName: '' }}
-        validateOnChange={true}
         validationSchema={DisplayingErrorMessagesSchema}
-        onSubmit={async (data, { setSubmitting }) => {
+        onSubmit={async (data, { setSubmitting, setFieldError }) => {
           try {
             setSubmitting(true);
 
@@ -82,11 +60,12 @@ const SignUpForm = () => {
 
             router.push('/');
           } catch (error) {
+            setFieldError('email', 'email already in use');
             console.log(error);
           }
         }}
       >
-        {({ isSubmitting, validateOnChange, validateField, handleChange }) => (
+        {({ isSubmitting, errors, values }) => (
           <Form>
             <StyledFormWrapper>
               <Field
@@ -125,10 +104,16 @@ const SignUpForm = () => {
                 type="input"
                 as={StyledInput}
                 validate={checkUsername}
-                validateOnChange={true}
               />
             </StyledFormWrapper>
-            <ErrorMessage name="username" component={StyledErrorMessage} />
+
+            {errors.username ? (
+              <StyledErrorMessage>{errors.username}</StyledErrorMessage>
+            ) : null}
+
+            {!errors.username && values.username ? (
+              <StyledSuccessMessage>username available</StyledSuccessMessage>
+            ) : null}
 
             <button disabled={isSubmitting} type="submit">
               Submit
@@ -148,4 +133,8 @@ const StyledInput = styled.input``;
 
 const StyledErrorMessage = styled.div`
   color: red;
+`;
+
+const StyledSuccessMessage = styled.div`
+  color: green;
 `;

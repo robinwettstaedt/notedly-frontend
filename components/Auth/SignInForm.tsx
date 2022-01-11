@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
@@ -21,6 +21,7 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
 const SignInForm = () => {
   const router = useRouter();
   const { mutateToken } = useAuth();
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   return (
     <>
@@ -29,6 +30,7 @@ const SignInForm = () => {
         validationSchema={DisplayingErrorMessagesSchema}
         onSubmit={async (data, { setSubmitting }) => {
           try {
+            setShowErrorMessage(false);
             setSubmitting(true);
 
             const response = await axios.post(authEndpoints.signIn, data);
@@ -38,6 +40,7 @@ const SignInForm = () => {
 
             router.push('/');
           } catch (error) {
+            setShowErrorMessage(true);
             console.log(error);
           }
         }}
@@ -58,6 +61,12 @@ const SignInForm = () => {
               as={styledInput}
             />
             <ErrorMessage name="password" component={StyledErrorMessage} />
+
+            {showErrorMessage && (
+              <StyledErrorMessage>
+                email or password not correct
+              </StyledErrorMessage>
+            )}
             <button disabled={isSubmitting} type="submit">
               Submit
             </button>
